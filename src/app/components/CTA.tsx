@@ -1,7 +1,6 @@
 import { motion, useInView } from 'motion/react';
 import { useRef, useState } from 'react';
-import { ArrowRight, Apple, Smartphone } from 'lucide-react';
-import { Link } from 'react-router';
+import { ArrowRight, Apple, Smartphone, Download } from 'lucide-react';
 import SparkleOverlay from './SparkleOverlay';
 
 export function CTA() {
@@ -91,7 +90,7 @@ export function CTA() {
                 className="flex flex-col sm:flex-row items-center justify-center gap-4"
               >
                 {/* App Store Button */}
-                <Link to="/waitlist">
+                <a href="https://apps.apple.com/ng/app/kavipay/id6759305057" target="_blank" rel="noopener noreferrer">
                   <motion.button
                     className="group flex items-center space-x-3 px-8 py-4 bg-white text-[#1E63C6] rounded-full font-semibold text-lg hover:bg-white/90 transition-colors"
                     whileHover={{ scale: 1.05, y: -2 }}
@@ -104,23 +103,34 @@ export function CTA() {
                     </div>
                     <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                   </motion.button>
-                </Link>
+                </a>
 
-                {/* Google Play Button */}
-                <Link to="/waitlist">
+                {/* APK Download Button */}
+                <a href="https://github.com/Ploutoslabs/kavipay-site/releases/download/v1.0.0/kavipay.apk">
                   <motion.button
                     className="group flex items-center space-x-3 px-8 py-4 bg-black text-white rounded-full font-semibold text-lg hover:bg-black/80 transition-colors"
                     whileHover={{ scale: 1.05, y: -2 }}
                     whileTap={{ scale: 0.95 }}
                   >
-                    <Smartphone className="w-6 h-6" />
+                    <Download className="w-6 h-6" />
                     <div className="text-left">
-                      <div className="text-xs text-white/80">Get it on</div>
-                      <div className="font-bold">Google Play</div>
+                      <div className="text-xs text-white/80">Download</div>
+                      <div className="font-bold">Android APK</div>
                     </div>
                     <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                   </motion.button>
-                </Link>
+                </a>
+
+                {/* Google Play Button - Coming Soon */}
+                <motion.button
+                  className="flex items-center space-x-3 px-8 py-4 bg-white/10 text-white/50 rounded-full font-semibold text-lg cursor-not-allowed"
+                >
+                  <Smartphone className="w-6 h-6" />
+                  <div className="text-left">
+                    <div className="text-xs text-white/40">Coming Soon</div>
+                    <div className="font-bold">Google Play</div>
+                  </div>
+                </motion.button>
               </motion.div>
 
               {/* Trust indicators */}

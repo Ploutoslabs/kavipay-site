@@ -96,16 +96,16 @@ export function Hero() {
           transition={{ duration: 0.8 }}
           className="flex flex-col sm:flex-row items-center justify-center gap-4"
         >
-          <Link to="/waitlist">
+          <a href="https://app.kavipay.io/" target="_blank" rel="noopener noreferrer">
             <motion.button
               className="group px-8 py-4 bg-gradient-to-r from-[#1E63C6] via-[#1476B8] to-[#0F8A8C] text-white rounded-full font-semibold text-lg flex items-center space-x-2"
               whileHover={{ scale: 1.05, boxShadow: '0 0 30px rgba(30, 99, 198, 0.5)' }}
               whileTap={{ scale: 0.95 }}
             >
-              <span>Join Waitlist</span>
+              <span>Get Started</span>
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </motion.button>
-          </Link>
+          </a>
 
           <motion.button
             className="px-8 py-4 bg-white/5 backdrop-blur-sm border border-white/20 text-white rounded-full font-semibold text-lg hover:bg-white/10 transition-colors"

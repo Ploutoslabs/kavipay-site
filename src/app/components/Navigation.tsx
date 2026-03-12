@@ -54,7 +54,7 @@ export function Navigation() {
           </div>
           {/* Get Started button always visible */}
           <div className="flex items-center">
-            <Link to="/waitlist">
+            <a href="https://app.kavipay.io/" target="_blank" rel="noopener noreferrer">
               <motion.button
                 className="px-6 py-2.5 bg-gradient-to-r from-[#1E63C6] via-[#1476B8] to-[#0F8A8C] text-white rounded-full font-medium"
                 whileHover={{ scale: 1.05, boxShadow: '0 0 20px rgba(30, 99, 198, 0.4)' }}
@@ -62,7 +62,7 @@ export function Navigation() {
               >
                 Get Started
               </motion.button>
-            </Link>
+            </a>
           </div>
 
           {/* Mobile Menu Button */}
@@ -92,11 +92,11 @@ export function Navigation() {
                 {item}
               </a>
             ))}
-            <Link to="/waitlist" className="block">
+            <a href="https://app.kavipay.io/" target="_blank" rel="noopener noreferrer" className="block">
               <button className="w-full mt-4 px-6 py-2.5 bg-gradient-to-r from-[#1E63C6] via-[#1476B8] to-[#0F8A8C] text-white rounded-full font-medium">
                 Get Started
               </button>
-            </Link>
+            </a>
           </motion.div>
         )}
       </div>
