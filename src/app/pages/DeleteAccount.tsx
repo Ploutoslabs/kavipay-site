@@ -2,11 +2,15 @@ import { motion } from 'motion/react';
 import { Navigation } from '../components/Navigation';
 import { PageHeader } from '../components/PageHeader';
 import { Footer } from '../components/Footer';
-import { AlertTriangle, Trash2, Mail, Clock } from 'lucide-react';
+import { AlertTriangle, Trash2, Mail, Clock, Loader2 } from 'lucide-react';
 import { useState } from 'react';
+
+const API_BASE = 'https://mining-api-123lfk.ploutoslabs.io';
 
 export default function DeleteAccount() {
   const [confirmDelete, setConfirmDelete] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState('');
   const [formData, setFormData] = useState({
     email: '',
     reason: '',
@@ -17,19 +21,42 @@ export default function DeleteAccount() {
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => {
     const { name, value, type } = e.target;
+    setError('');
     setFormData((prev) => ({
       ...prev,
       [name]: type === 'checkbox' ? (e.target as HTMLInputElement).checked : value,
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (formData.agree) {
-      // Handle account deletion request
-      console.log('Account deletion request:', formData);
-      // Show confirmation message
+    if (!formData.agree) return;
+
+    setSubmitting(true);
+    setError('');
+
+    try {
+      const res = await fetch(`${API_BASE}/account/delete-request`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: formData.email,
+          reason: formData.reason || undefined,
+        }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        setError(data.error || 'Something went wrong. Please try again.');
+        return;
+      }
+
       setConfirmDelete(true);
+    } catch {
+      setError('Unable to reach the server. Please try again later.');
+    } finally {
+      setSubmitting(false);
     }
   };
 
@@ -193,18 +220,31 @@ export default function DeleteAccount() {
                   </label>
                 </div>
 
+                {error && (
+                  <div className="bg-red-500/10 border border-red-500/30 rounded-xl p-4 text-red-400 text-sm">
+                    {error}
+                  </div>
+                )}
+
                 <motion.button
-                  whileHover={{ scale: formData.agree ? 1.02 : 1 }}
-                  whileTap={{ scale: formData.agree ? 0.98 : 1 }}
+                  whileHover={{ scale: formData.agree && !submitting ? 1.02 : 1 }}
+                  whileTap={{ scale: formData.agree && !submitting ? 0.98 : 1 }}
                   type="submit"
-                  disabled={!formData.agree}
-                  className={`w-full py-3 rounded-xl font-semibold transition-all ${
-                    formData.agree
+                  disabled={!formData.agree || submitting}
+                  className={`w-full py-3 rounded-xl font-semibold transition-all flex items-center justify-center ${
+                    formData.agree && !submitting
                       ? 'bg-red-600 hover:bg-red-700 text-white cursor-pointer'
                       : 'bg-red-600/50 text-white/50 cursor-not-allowed'
                   }`}
                 >
-                  Delete My Account
+                  {submitting ? (
+                    <>
+                      <Loader2 className="w-5 h-5 mr-2 animate-spin" />
+                      Submitting...
+                    </>
+                  ) : (
+                    'Delete My Account'
+                  )}
                 </motion.button>
               </form>
             </motion.div>
