@@ -17,7 +17,7 @@ const footerLinks = {
     { name: 'Press', path: '/company#press' },
   ],
   Support: [
-    { name: 'Help Center', path: '/help-center' },
+    { name: 'Help Center', path: '/help' },
     { name: 'FAQ', path: '/faq' },
     { name: 'Knowledge Base', path: '/knowledge-base' },
     { name: 'Partnership', path: '/partnership' },
@@ -27,7 +27,7 @@ const footerLinks = {
   ],
   Legal: [
     { name: 'Terms & Conditions', path: '/terms' },
-    { name: 'Privacy Policy', path: '/privacy' },
+    { name: 'Privacy Policy', path: '/privacy-policy' },
     { name: 'Cookies Policy', path: '/cookies' },
     { name: 'EULA', path: '/eula' },
   ],
@@ -100,7 +100,7 @@ export function Footer() {
             © 2026 KaviPay. All rights reserved.
           </p>
           <div className="flex items-center space-x-6 text-sm text-white/40">
-            <Link to="/privacy" className="hover:text-white/60 transition-colors">
+            <Link to="/privacy-policy" className="hover:text-white/60 transition-colors">
               Privacy Policy
             </Link>
             <Link to="/terms" className="hover:text-white/60 transition-colors">

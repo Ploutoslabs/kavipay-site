@@ -42,7 +42,7 @@ export const router = createBrowserRouter([
     Component: Resources,
   },
   {
-    path: '/help-center',
+    path: '/help',
     Component: HelpCenter,
   },
   {
@@ -70,7 +70,7 @@ export const router = createBrowserRouter([
     Component: Terms,
   },
   {
-    path: '/privacy',
+    path: '/privacy-policy',
     Component: Privacy,
   },
   {
