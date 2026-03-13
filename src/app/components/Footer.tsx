@@ -11,7 +11,6 @@ const footerLinks = {
   ],
   Company: [
     { name: 'About', path: '/company#about' },
-    { name: 'Careers', path: '/company#careers' },
     { name: 'Press', path: '/company#press' },
   ],
   Support: [
