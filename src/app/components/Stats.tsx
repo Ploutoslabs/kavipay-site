@@ -31,20 +31,20 @@ function AnimatedNumber({ value, suffix = '' }: { value: number; suffix?: string
 
 const stats = [
   {
-    value: 500,
-    suffix: 'K+',
+    value: 75,
+    suffix: 'K',
     label: 'Active Users',
     gradient: 'from-[#1E63C6] to-[#1476B8]',
   },
   {
-    value: 150,
+    value: 50,
     suffix: '+',
     label: 'Countries',
     gradient: 'from-[#1476B8] to-[#0F8A8C]',
   },
   {
-    value: 2,
-    suffix: 'B+',
+    value: 50,
+    suffix: 'K+',
     label: 'Transactions',
     gradient: 'from-[#0F8A8C] to-[#1E63C6]',
   },

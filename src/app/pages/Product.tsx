@@ -149,92 +149,6 @@ function CardsSection() {
   );
 }
 
-function PricingSection() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true });
-
-  const plans = [
-    {
-      name: 'Basic',
-      price: 'Free',
-      features: ['1 Virtual Card', '2% Transaction Fee', 'Basic Support', 'Standard Limits'],
-    },
-    {
-      name: 'Premium',
-      price: '$9.99/mo',
-      features: ['Unlimited Virtual Cards', '1% Transaction Fee', 'Priority Support', 'Higher Limits', '1 Physical Card'],
-      popular: true,
-    },
-    {
-      name: 'Business',
-      price: '$29.99/mo',
-      features: ['Team Cards', '0.5% Transaction Fee', '24/7 Support', 'Unlimited Limits', 'Multiple Physical Cards', 'API Access'],
-    },
-  ];
-
-  return (
-    <section id="pricing" className="py-24 bg-black">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          ref={ref}
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            <span className="bg-gradient-to-r from-[#1E63C6] via-[#1476B8] to-[#0F8A8C] bg-clip-text text-transparent">
-              Pricing
-            </span>
-          </h2>
-          <p className="text-xl text-white/60 max-w-2xl mx-auto">
-            Choose the plan that works best for you
-          </p>
-        </motion.div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {plans.map((plan, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              className={`relative bg-white/5 backdrop-blur-sm border rounded-2xl p-8 ${
-                plan.popular ? 'border-[#1476B8] shadow-lg shadow-[#1476B8]/20' : 'border-white/10'
-              }`}
-            >
-              {plan.popular && (
-                <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 px-4 py-1 bg-gradient-to-r from-[#1E63C6] to-[#0F8A8C] text-white text-sm font-semibold rounded-full">
-                  Most Popular
-                </div>
-              )}
-              <h3 className="text-2xl font-bold text-white mb-2">{plan.name}</h3>
-              <div className="text-4xl font-bold text-white mb-6">{plan.price}</div>
-              <ul className="space-y-3 mb-8">
-                {plan.features.map((feature, i) => (
-                  <li key={i} className="flex items-center space-x-3 text-white/80">
-                    <Check className="w-5 h-5 text-[#1476B8]" />
-                    <span>{feature}</span>
-                  </li>
-                ))}
-              </ul>
-              <button
-                className={`w-full px-6 py-3 rounded-xl font-semibold transition-all ${
-                  plan.popular
-                    ? 'bg-gradient-to-r from-[#1E63C6] to-[#0F8A8C] text-white hover:opacity-90'
-                    : 'bg-white/10 border border-white/20 text-white hover:bg-white/20'
-                }`}
-              >
-                Get Started
-              </button>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
 function SecuritySection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
@@ -314,7 +228,6 @@ export default function Product() {
       />
       <FeaturesSection />
       <CardsSection />
-      <PricingSection />
       <SecuritySection />
       <Footer />
     </div>
