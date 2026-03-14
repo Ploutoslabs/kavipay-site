@@ -15,6 +15,7 @@ import KnowledgeBase from './pages/KnowledgeBase';
 import Contact from './pages/Contact';
 import Status from './pages/Status';
 import DeleteAccount from './pages/DeleteAccount';
+import Referral from './pages/Referral';
 
 export const router = createBrowserRouter([
   {
@@ -80,5 +81,13 @@ export const router = createBrowserRouter([
   {
     path: '/eula',
     Component: EULA,
+  },
+  {
+    path: '/referral/:code',
+    Component: Referral,
+  },
+  {
+    path: '/referral',
+    Component: Referral,
   },
 ]);
