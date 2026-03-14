@@ -7,13 +7,10 @@ const footerLinks = {
   Product: [
     { name: 'Features', path: '#features' },
     { name: 'Cards', path: '#cards' },
-    { name: 'Pricing', path: '/product#pricing' },
     { name: 'Security', path: '#security' },
   ],
   Company: [
     { name: 'About', path: '/company#about' },
-    { name: 'Blog', path: '/company#blog' },
-    { name: 'Careers', path: '/company#careers' },
     { name: 'Press', path: '/company#press' },
   ],
   Support: [

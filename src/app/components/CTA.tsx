@@ -149,7 +149,7 @@ export function CTA() {
                       />
                     ))}
                   </div>
-                  <span className="text-sm">500K+ users</span>
+                  <span className="text-sm">75K users</span>
                 </div>
                 <div className="flex items-center space-x-1">
                   {[...Array(5)].map((_, i) => (
