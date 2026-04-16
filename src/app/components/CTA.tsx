@@ -106,7 +106,7 @@ export function CTA() {
                 </a>
 
                 {/* APK Download Button */}
-                <a href="https://github.com/Ploutoslabs/kavipay-site/releases/download/v1.0.0/kavipay.apk">
+                <a href="https://github.com/Ploutoslabs/kavipay-site/releases/download/v1.1.0/kavipay.apk">
                   <motion.button
                     className="group flex items-center space-x-3 px-8 py-4 bg-black text-white rounded-full font-semibold text-lg hover:bg-black/80 transition-colors"
                     whileHover={{ scale: 1.05, y: -2 }}
