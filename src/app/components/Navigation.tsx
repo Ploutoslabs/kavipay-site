@@ -15,7 +15,25 @@ export function Navigation() {
     });
   }, [scrollY]);
 
-  const navItems = ["Features", "How It Works", "Cards", "Security"];
+  const handleNavClick = (id: string) => {
+    // Close mobile menu if open
+    setIsMobileMenuOpen(false);
+
+    // Scroll to element smoothly
+    setTimeout(() => {
+      const element = document.getElementById(id);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }, 0);
+  };
+
+  const navItems = [
+    { label: "Features", id: "features" },
+    { label: "How It Works", id: "how-it-works" },
+    { label: "Cards", id: "cards" },
+    { label: "Security", id: "security" },
+  ];
 
   return (
     <motion.nav
@@ -42,18 +60,28 @@ export function Navigation() {
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
             {navItems.map((item) => (
-              <motion.a
-                key={item}
-                href={`#${item.toLowerCase().replace(" ", "-")}`}
-                className="text-white/80 hover:text-white transition-colors relative group"
+              <motion.button
+                key={item.id}
+                onClick={() => handleNavClick(item.id)}
+                className="text-white/80 hover:text-white transition-colors relative group text-left bg-none border-none cursor-pointer"
                 whileHover={{ y: -2 }}>
-                {item}
+                {item.label}
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-[#1E63C6] to-[#0F8A8C] group-hover:w-full transition-all duration-300" />
-              </motion.a>
+              </motion.button>
             ))}
           </div>
           {/* Get Started button - hidden on mobile, visible on larger screens */}
-          <div className="hidden sm:flex items-center">
+          <div className="hidden sm:flex items-center gap-4">
+            <motion.button
+              onClick={() => handleNavClick("cta")}
+              className="px-4 py-2 sm:px-6 sm:py-2.5 bg-gradient-to-r from-[#1E63C6] via-[#1476B8] to-[#0F8A8C] text-white rounded-full font-medium text-sm sm:text-base transition-all"
+              whileHover={{
+                scale: 1.05,
+                boxShadow: "0 0 20px rgba(30, 99, 198, 0.4)",
+              }}
+              whileTap={{ scale: 0.95 }}>
+              Download App
+            </motion.button>
             <a
               href="https://app.kavipay.io/"
               target="_blank"
@@ -81,19 +109,23 @@ export function Navigation() {
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
           <motion.div
-            className="md:hidden pb-4"
+            className="md:hidden pb-4 bg-black/80 backdrop-blur-md border-b border-white/10"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}>
             {navItems.map((item) => (
-              <a
-                key={item}
-                href={`#${item.toLowerCase().replace(" ", "-")}`}
-                className="block py-2 text-white/80 hover:text-white transition-colors"
-                onClick={() => setIsMobileMenuOpen(false)}>
-                {item}
-              </a>
+              <button
+                key={item.id}
+                onClick={() => handleNavClick(item.id)}
+                className="block w-full text-left py-2 text-white/80 hover:text-white transition-colors bg-none border-none cursor-pointer">
+                {item.label}
+              </button>
             ))}
+            <button
+              onClick={() => handleNavClick("cta")}
+              className="w-full mt-4 px-6 py-2.5 bg-gradient-to-r from-[#1E63C6] via-[#1476B8] to-[#0F8A8C] text-white rounded-full font-medium">
+              Download App
+            </button>
             <a
               href="https://app.kavipay.io/"
               target="_blank"
