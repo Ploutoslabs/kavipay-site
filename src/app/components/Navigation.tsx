@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { motion, useScroll } from "motion/react";
 import { Menu, X } from "lucide-react";
 import { Link } from "react-router";
-import Logo from "../../assets/Kavi-logo.png";
+import Logo from "../../assets/kavi-logo-dark.png";
 
 export function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);

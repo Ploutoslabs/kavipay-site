@@ -1,7 +1,7 @@
 import { motion } from 'motion/react';
 import { Twitter, Github, Linkedin, Mail } from 'lucide-react';
 import { Link } from 'react-router';
-import Logo from '../../assets/Kavi-logo.png';
+import Logo from '../../assets/kavi-logo-dark.png';
 
 const footerLinks = {
   Product: [
@@ -25,6 +25,7 @@ const footerLinks = {
   Legal: [
     { name: 'Terms & Conditions', path: '/terms' },
     { name: 'Privacy Policy', path: '/privacy-policy' },
+    { name: 'Kavipay KYC Policy', path: '/kavipay-kyc-policy' },
     { name: 'Cookies Policy', path: '/cookies' },
     { name: 'EULA', path: '/eula' },
   ],
@@ -78,12 +79,23 @@ export function Footer() {
               <ul className="space-y-3">
                 {links.map((link) => (
                   <li key={link.name}>
-                    <a
-                      href={link.path}
-                      className="text-white/60 hover:text-white transition-colors text-sm"
-                    >
-                      {link.name}
-                    </a>
+                    {link.path.startsWith('/') && !link.path.includes('#') ? (
+                      // For internal routes, use Link component
+                      <Link
+                        to={link.path}
+                        className="text-white/60 hover:text-white transition-colors text-sm"
+                      >
+                        {link.name}
+                      </Link>
+                    ) : (
+                      // For anchor links and external links, use regular a tag
+                      <a
+                        href={link.path}
+                        className="text-white/60 hover:text-white transition-colors text-sm"
+                      >
+                        {link.name}
+                      </a>
+                    )}
                   </li>
                 ))}
               </ul>
