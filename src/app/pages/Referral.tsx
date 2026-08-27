@@ -5,7 +5,7 @@ import { Navigation } from '../components/Navigation';
 import { Footer } from '../components/Footer';
 
 const APP_STORE_URL = 'https://apps.apple.com/ng/app/kavipay/id6759305057';
-const APK_URL = 'https://github.com/Ploutoslabs/kavipay-site/releases/download/v1.1.1/kavipay.apk';
+const APK_URL = 'https://github.com/Ploutoslabs/kavipay-site/releases/latest/download/kavipay.apk';
 const API_URL = 'https://mining-api-123lfk.ploutoslabs.io';
 
 function DownloadButtons() {
