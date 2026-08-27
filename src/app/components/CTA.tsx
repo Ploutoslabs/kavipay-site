@@ -127,14 +127,23 @@ export function CTA() {
                   </motion.button>
                 </a>
 
-                {/* Google Play Button - Coming Soon */}
-                <motion.button className="flex items-center space-x-3 px-8 py-4 bg-white/10 text-white/50 rounded-full font-semibold text-lg cursor-not-allowed">
-                  <Smartphone className="w-6 h-6" />
-                  <div className="text-left">
-                    <div className="text-xs text-white/40">Coming Soon</div>
-                    <div className="font-bold">Google Play</div>
-                  </div>
-                </motion.button>
+                {/* Google Play Button */}
+                <a
+                  href="https://play.google.com/store/apps/details?id=com.kavipay.app"
+                  target="_blank"
+                  rel="noopener noreferrer">
+                  <motion.button
+                    className="group flex items-center space-x-3 px-8 py-4 bg-white text-[#1E63C6] rounded-full font-semibold text-lg hover:bg-white/90 transition-colors"
+                    whileHover={{ scale: 1.05, y: -2 }}
+                    whileTap={{ scale: 0.95 }}>
+                    <Smartphone className="w-6 h-6" />
+                    <div className="text-left">
+                      <div className="text-xs text-[#1E63C6]/80">Get it on</div>
+                      <div className="font-bold">Google Play</div>
+                    </div>
+                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  </motion.button>
+                </a>
               </motion.div>
 
               {/* Trust indicators */}

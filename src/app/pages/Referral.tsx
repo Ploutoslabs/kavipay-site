@@ -6,6 +6,7 @@ import { Footer } from '../components/Footer';
 
 const APP_STORE_URL = 'https://apps.apple.com/ng/app/kavipay/id6759305057';
 const APK_URL = 'https://github.com/Ploutoslabs/kavipay-site/releases/latest/download/kavipay.apk';
+const PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=com.kavipay.app';
 const API_URL = 'https://mining-api-123lfk.ploutoslabs.io';
 
 function DownloadButtons() {
@@ -35,13 +36,18 @@ function DownloadButtons() {
         </div>
       </a>
 
-      <div className="flex items-center justify-center gap-3 w-full px-6 py-4 bg-white/5 text-white/30 rounded-full font-semibold text-lg cursor-not-allowed">
+      <a
+        href={PLAY_STORE_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="flex items-center justify-center gap-3 w-full px-6 py-4 bg-white text-black rounded-full font-semibold text-lg hover:bg-white/90 transition-colors"
+      >
         <Smartphone className="w-6 h-6" />
         <div className="text-left">
-          <div className="text-xs text-white/20">Coming Soon</div>
+          <div className="text-xs text-black/60">Get it on</div>
           <div className="font-bold">Google Play</div>
         </div>
-      </div>
+      </a>
     </div>
   );
 }
