@@ -2,7 +2,6 @@ import { useMemo } from 'react';
 import { motion, useScroll, useTransform } from 'motion/react';
 import { ArrowRight, Sparkles } from 'lucide-react';
 import SparkleOverlay from './SparkleOverlay';
-import { ComingSoonBadge } from './ComingSoonBadge';
 import { useAmbientMotion } from './useAmbientMotion';
 
 const PARTICLE_COUNT = 20;
@@ -108,13 +107,8 @@ export function Hero() {
             Bridging Digital
           </span>
           <br />
-          {/* Badge sits inline with the second line. flex-wrap so it drops
-              below the headline on narrow screens instead of squashing it. */}
-          <span className="inline-flex flex-wrap items-center justify-center gap-x-4 gap-y-3">
-            <span className="bg-gradient-to-r from-[#1E63C6] via-[#1476B8] to-[#0F8A8C] bg-clip-text text-transparent">
-             Payments
-            </span>
-            <ComingSoonBadge size="md" className="translate-y-1" />
+          <span className="bg-gradient-to-r from-[#1E63C6] via-[#1476B8] to-[#0F8A8C] bg-clip-text text-transparent">
+            Payments
           </span>
         </motion.h1>
 
