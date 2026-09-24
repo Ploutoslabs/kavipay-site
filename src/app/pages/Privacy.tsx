@@ -125,7 +125,7 @@ export default function Privacy() {
             transition={{ duration: 0.8 }}
           >
             {/* Policy Header */}
-            <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 mb-8">
+            <div className="bg-white/5 border border-white/10 rounded-2xl p-8 mb-8">
               <h2 className="text-3xl font-bold text-white mb-4">KAVIPAY.IO COMPREHENSIVE PRIVACY POLICY</h2>
               <p className="text-white/80 mb-4">
                 <strong>Company:</strong> PloutosLabs International Ltd (Trading as Kavipay.io)
@@ -139,7 +139,7 @@ export default function Privacy() {
             </div>
 
             {/* Table of Contents */}
-            <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 mb-8">
+            <div className="bg-white/5 border border-white/10 rounded-2xl p-8 mb-8">
               <h3 className="text-xl font-bold text-white mb-4">TABLE OF CONTENTS</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 {sections.map((section, index) => (
@@ -161,7 +161,7 @@ export default function Privacy() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: index * 0.05 }}
-                  className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8"
+                  className="bg-white/5 border border-white/10 rounded-2xl p-8"
                 >
                   <h2 className="text-2xl font-bold text-white mb-4 bg-gradient-to-r from-[#1E63C6] to-[#0F8A8C] bg-clip-text text-transparent">
                     {section.title}
@@ -179,7 +179,7 @@ export default function Privacy() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: sections.length * 0.05 }}
-                className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 mt-12"
+                className="bg-white/5 border border-white/10 rounded-2xl p-8 mt-12"
               >
                 <p className="text-white/60 leading-relaxed text-center">
                   By using Kavipay Services, you acknowledge that you have read, understood, and agree to be bound by this Privacy Policy.

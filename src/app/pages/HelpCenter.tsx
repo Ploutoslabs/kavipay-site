@@ -134,7 +134,7 @@ export default function HelpCenter() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
                   onClick={() => handleTopicClick(topic.faqCategory)}
-                  className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 hover:bg-white/10 hover:border-white/20 transition-all duration-300 group cursor-pointer">
+                  className="bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/10 hover:border-white/20 transition-all duration-300 group cursor-pointer">
                   <div className="flex items-start space-x-4 mb-4">
                     <div className="bg-gradient-to-br from-[#1E63C6] to-[#0F8A8C] p-3 rounded-xl group-hover:scale-110 transition-transform">
                       <Icon className="w-6 h-6" />
@@ -182,7 +182,7 @@ export default function HelpCenter() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 text-center">
+            className="bg-white/5 border border-white/10 rounded-2xl p-8 text-center">
             <h2 className="text-2xl font-bold mb-4 bg-gradient-to-r from-[#1E63C6] to-[#0F8A8C] bg-clip-text text-transparent">
               Still need help?
             </h2>

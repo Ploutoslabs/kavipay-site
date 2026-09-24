@@ -78,7 +78,7 @@ export default function Cookies() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 mb-8">
+            <div className="bg-white/5 border border-white/10 rounded-2xl p-8 mb-8">
               <p className="text-white/60 mb-0">
                 This Cookies Policy explains how KaviPay Inc. ("we", "us", or "our") uses cookies and similar technologies when you use our services.
               </p>
@@ -91,7 +91,7 @@ export default function Cookies() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: index * 0.05 }}
-                  className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8"
+                  className="bg-white/5 border border-white/10 rounded-2xl p-8"
                 >
                   <h2 className="text-2xl font-bold text-white mb-4 bg-gradient-to-r from-[#1E63C6] to-[#0F8A8C] bg-clip-text text-transparent">
                     {section.title}

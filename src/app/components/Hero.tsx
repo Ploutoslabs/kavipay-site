@@ -2,11 +2,12 @@ import { useMemo } from 'react';
 import { motion, useScroll, useTransform } from 'motion/react';
 import { ArrowRight, Sparkles } from 'lucide-react';
 import SparkleOverlay from './SparkleOverlay';
-import { ComingSoonBadge } from './ComingSoonBadge';
+import { useAmbientMotion } from './useAmbientMotion';
 
 const PARTICLE_COUNT = 20;
 
 export function Hero() {
+  const ambient = useAmbientMotion();
   const { scrollY } = useScroll();
   const y = useTransform(scrollY, [0, 500], [0, 150]);
   const opacity = useTransform(scrollY, [0, 500], [1, 0.3]);
@@ -38,26 +39,31 @@ export function Hero() {
       <SparkleOverlay count={12} color="#06b6d4" style="drift" />
 
       {/* Animated Background */}
-      <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
+      <div
+        ref={ambient.ref}
+        className="absolute inset-0 overflow-hidden"
+        aria-hidden="true"
+      >
         <motion.div
           className="absolute inset-0 opacity-30"
           style={{
             background:
               'radial-gradient(circle at 50% 50%, rgba(30, 99, 198, 0.3), transparent 50%)',
           }}
-          animate={{
-            scale: [1, 1.2, 1],
-            opacity: [0.3, 0.5, 0.3],
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: 'easeInOut',
-          }}
+          animate={
+            ambient.active
+              ? { scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3] }
+              : { scale: 1, opacity: 0.3 }
+          }
+          transition={
+            ambient.active
+              ? { duration: 8, repeat: Infinity, ease: 'easeInOut' }
+              : { duration: 0.6 }
+          }
         />
 
         {/* Floating particles */}
-        {particles.map((particle, i) => (
+        {ambient.active && particles.map((particle, i) => (
           <motion.div
             key={i}
             className="absolute h-1 w-1 rounded-full bg-[#1476B8]"
@@ -84,7 +90,7 @@ export function Hero() {
           initial={{ opacity: 1, y: 0 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="mb-8 inline-flex items-center space-x-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 backdrop-blur-sm"
+          className="mb-8 inline-flex items-center space-x-2 rounded-full border border-white/20 bg-white/10 px-4 py-2"
         >
           <Sparkles className="h-4 w-4 text-[#1476B8]" aria-hidden="true" />
           <span className="text-sm text-white">The Future of Digital Payments</span>
@@ -101,13 +107,8 @@ export function Hero() {
             Bridging Digital
           </span>
           <br />
-          {/* Badge sits inline with the second line. flex-wrap so it drops
-              below the headline on narrow screens instead of squashing it. */}
-          <span className="inline-flex flex-wrap items-center justify-center gap-x-4 gap-y-3">
-            <span className="bg-gradient-to-r from-[#1E63C6] via-[#1476B8] to-[#0F8A8C] bg-clip-text text-transparent">
-             Payments
-            </span>
-            <ComingSoonBadge size="md" className="translate-y-1" />
+          <span className="bg-gradient-to-r from-[#1E63C6] via-[#1476B8] to-[#0F8A8C] bg-clip-text text-transparent">
+            Payments
           </span>
         </motion.h1>
 
@@ -144,7 +145,7 @@ export function Hero() {
           <motion.button
             type="button"
             onClick={scrollToFeatures}
-            className="rounded-full border border-white/20 bg-white/5 px-8 py-4 text-lg font-semibold text-white backdrop-blur-sm transition-colors hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1476B8]"
+            className="rounded-full border border-white/20 bg-white/5 px-8 py-4 text-lg font-semibold text-white transition-colors hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1476B8]"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -155,15 +156,15 @@ export function Hero() {
         {/* Scroll Indicator */}
         <motion.div
           className="absolute bottom-8 left-1/2 -translate-x-1/2 transform"
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
+          animate={ambient.active ? { y: [0, 10, 0] } : { y: 0 }}
+          transition={ambient.active ? { duration: 2, repeat: Infinity } : undefined}
           aria-hidden="true"
         >
           <div className="flex h-10 w-6 items-start justify-center rounded-full border-2 border-white/30 p-2">
             <motion.div
               className="h-2 w-1 rounded-full bg-white/50"
-              animate={{ y: [0, 12, 0] }}
-              transition={{ duration: 2, repeat: Infinity }}
+              animate={ambient.active ? { y: [0, 12, 0] } : { y: 0 }}
+              transition={ambient.active ? { duration: 2, repeat: Infinity } : undefined}
             />
           </div>
         </motion.div>

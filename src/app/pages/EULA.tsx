@@ -102,7 +102,7 @@ export default function EULA() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 mb-8">
+            <div className="bg-white/5 border border-white/10 rounded-2xl p-8 mb-8">
               <p className="text-white/60 mb-0">
                 This End User License Agreement ("EULA") is a legal agreement between you and KaviPay Inc. ("KaviPay") for the use of the KaviPay mobile application and related services. By installing or using the application, you agree to be bound by the terms of this EULA.
               </p>
@@ -115,7 +115,7 @@ export default function EULA() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: index * 0.05 }}
-                  className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8"
+                  className="bg-white/5 border border-white/10 rounded-2xl p-8"
                 >
                   <h2 className="text-2xl font-bold text-white mb-4 bg-gradient-to-r from-[#1E63C6] to-[#0F8A8C] bg-clip-text text-transparent">
                     {section.title}

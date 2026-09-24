@@ -137,11 +137,11 @@ export function Roadmap() {
             initial={{ opacity: 0, x: -30 }}
             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 }}
             transition={{ duration: 0.8, delay: 0.1 }}
-            className="relative rounded-2xl border border-white/10 bg-white/5 p-8 backdrop-blur-sm"
+            className="relative rounded-2xl border border-white/10 bg-white/5 p-8"
           >
             <div className="mb-8 flex items-center gap-3">
               <span className="relative flex h-2.5 w-2.5" aria-hidden="true">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-60" />
+                <span className="absolute inline-flex h-full w-full animate-ping motion-reduce:animate-none rounded-full bg-emerald-400 opacity-60" />
                 <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-emerald-400" />
               </span>
               <h3 className="text-sm font-semibold uppercase tracking-wider text-white">
@@ -167,7 +167,7 @@ export function Roadmap() {
             initial={{ opacity: 0, x: 30 }}
             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 30 }}
             transition={{ duration: 0.8, delay: 0.1 }}
-            className="relative rounded-2xl border border-white/10 bg-white/[0.02] p-8 backdrop-blur-sm"
+            className="relative rounded-2xl border border-white/10 bg-white/[0.02] p-8"
           >
             <div className="mb-8 flex flex-wrap items-center gap-3">
               <h3 className="text-sm font-semibold uppercase tracking-wider text-white/70">

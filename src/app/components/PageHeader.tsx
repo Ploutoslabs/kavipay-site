@@ -1,6 +1,7 @@
 import { motion } from 'motion/react';
 import { Link } from 'react-router';
 import { ArrowLeft } from 'lucide-react';
+import { useAmbientMotion } from './useAmbientMotion';
 
 interface PageHeaderProps {
   title: string;
@@ -9,34 +10,37 @@ interface PageHeaderProps {
 }
 
 export function PageHeader({ title, subtitle, showBackButton = true }: PageHeaderProps) {
+  const ambient = useAmbientMotion();
+
   return (
     <section className="relative min-h-[40vh] flex items-center justify-center overflow-hidden bg-black border-b border-white/10">
       {/* Background effects */}
-      <div className="absolute inset-0 overflow-hidden">
+      <div ref={ambient.ref} className="absolute inset-0 overflow-hidden">
         <motion.div
           className="absolute top-0 left-1/4 w-96 h-96 bg-[#1E63C6]/20 rounded-full blur-3xl"
-          animate={{
-            scale: [1, 1.2, 1],
-            opacity: [0.2, 0.3, 0.2],
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: 'easeInOut',
-          }}
+          animate={
+            ambient.active
+              ? { scale: [1, 1.2, 1], opacity: [0.2, 0.3, 0.2] }
+              : { scale: 1, opacity: 0.2 }
+          }
+          transition={
+            ambient.active
+              ? { duration: 8, repeat: Infinity, ease: 'easeInOut' }
+              : { duration: 0.6 }
+          }
         />
         <motion.div
           className="absolute bottom-0 right-1/4 w-96 h-96 bg-[#0F8A8C]/20 rounded-full blur-3xl"
-          animate={{
-            scale: [1, 1.3, 1],
-            opacity: [0.2, 0.3, 0.2],
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: 'easeInOut',
-            delay: 1,
-          }}
+          animate={
+            ambient.active
+              ? { scale: [1, 1.3, 1], opacity: [0.2, 0.3, 0.2] }
+              : { scale: 1, opacity: 0.2 }
+          }
+          transition={
+            ambient.active
+              ? { duration: 8, repeat: Infinity, ease: 'easeInOut', delay: 1 }
+              : { duration: 0.6 }
+          }
         />
       </div>
 

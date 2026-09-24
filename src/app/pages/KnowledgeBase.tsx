@@ -181,7 +181,7 @@ export default function KnowledgeBase() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 hover:bg-white/10 hover:border-white/20 transition-all duration-300 group cursor-pointer text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1476B8]"
+                  className="bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/10 hover:border-white/20 transition-all duration-300 group cursor-pointer text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1476B8]"
                 >
                   <div className="flex items-start space-x-4 mb-4">
                     <div className="bg-gradient-to-br from-[#1E63C6] to-[#0F8A8C] p-3 rounded-xl group-hover:scale-110 transition-transform">
@@ -258,7 +258,7 @@ export default function KnowledgeBase() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="bg-white/[0.02] backdrop-blur-sm border border-white/[0.07] rounded-2xl p-6 hover:bg-white/5 hover:border-white/20 transition-all duration-300 group cursor-pointer text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1476B8]"
+                className="bg-white/[0.02] border border-white/[0.07] rounded-2xl p-6 hover:bg-white/5 hover:border-white/20 transition-all duration-300 group cursor-pointer text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1476B8]"
               >
                 <div className="flex items-start justify-between gap-3 mb-4">
                   <BookOpen

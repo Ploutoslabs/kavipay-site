@@ -42,7 +42,7 @@ export default function Terms() {
             className="terms-content"
           >
             {/* Header */}
-            <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 mb-8">
+            <div className="bg-white/5 border border-white/10 rounded-2xl p-8 mb-8">
               <h1 className="text-3xl font-bold text-center mb-4 bg-gradient-to-r from-[#1E63C6] via-[#1476B8] to-[#0F8A8C] bg-clip-text text-transparent">
                 KAVIPAY.IO TERMS AND CONDITIONS
               </h1>
@@ -60,7 +60,7 @@ export default function Terms() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 mb-6"
+              className="bg-white/5 border border-white/10 rounded-2xl p-8 mb-6"
             >
               <h2 className="text-2xl font-bold text-white mb-4 bg-gradient-to-r from-[#1E63C6] to-[#0F8A8C] bg-clip-text text-transparent">
                 1. ACCEPTANCE OF TERMS
@@ -83,7 +83,7 @@ export default function Terms() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.15 }}
-              className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 mb-6"
+              className="bg-white/5 border border-white/10 rounded-2xl p-8 mb-6"
             >
               <h2 className="text-2xl font-bold text-white mb-4 bg-gradient-to-r from-[#1E63C6] to-[#0F8A8C] bg-clip-text text-transparent">
                 2. DEFINITIONS
@@ -104,7 +104,7 @@ export default function Terms() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 mb-6"
+              className="bg-white/5 border border-white/10 rounded-2xl p-8 mb-6"
             >
               <h2 className="text-2xl font-bold text-white mb-4 bg-gradient-to-r from-[#1E63C6] to-[#0F8A8C] bg-clip-text text-transparent">
                 3. ELIGIBILITY AND ACCOUNT REGISTRATION
@@ -146,7 +146,7 @@ export default function Terms() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.25 }}
-              className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 mb-6"
+              className="bg-white/5 border border-white/10 rounded-2xl p-8 mb-6"
             >
               <h2 className="text-2xl font-bold text-white mb-4 bg-gradient-to-r from-[#1E63C6] to-[#0F8A8C] bg-clip-text text-transparent">
                 4. SERVICES AND CARD ISSUANCE
@@ -192,7 +192,7 @@ export default function Terms() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 mb-6"
+              className="bg-white/5 border border-white/10 rounded-2xl p-8 mb-6"
             >
               <h2 className="text-2xl font-bold text-white mb-4 bg-gradient-to-r from-[#1E63C6] to-[#0F8A8C] bg-clip-text text-transparent">
                 5. FEES AND CHARGES
@@ -223,7 +223,7 @@ export default function Terms() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.35 }}
-              className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 mb-6"
+              className="bg-white/5 border border-white/10 rounded-2xl p-8 mb-6"
             >
               <h2 className="text-2xl font-bold text-white mb-4 bg-gradient-to-r from-[#1E63C6] to-[#0F8A8C] bg-clip-text text-transparent">
                 6. FUNDING AND TRANSACTIONS
@@ -250,7 +250,7 @@ export default function Terms() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
-              className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 mb-6"
+              className="bg-white/5 border border-white/10 rounded-2xl p-8 mb-6"
             >
               <h2 className="text-2xl font-bold text-white mb-4 bg-gradient-to-r from-[#1E63C6] to-[#0F8A8C] bg-clip-text text-transparent">
                 7. PROHIBITED ACTIVITIES
@@ -278,7 +278,7 @@ export default function Terms() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.45 }}
-              className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 mb-6"
+              className="bg-white/5 border border-white/10 rounded-2xl p-8 mb-6"
             >
               <h2 className="text-2xl font-bold text-white mb-4 bg-gradient-to-r from-[#1E63C6] to-[#0F8A8C] bg-clip-text text-transparent">
                 8. COMPLIANCE AND REGULATORY OBLIGATIONS
@@ -304,7 +304,7 @@ export default function Terms() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.5 }}
-              className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 mb-6"
+              className="bg-white/5 border border-white/10 rounded-2xl p-8 mb-6"
             >
               <h2 className="text-2xl font-bold text-white mb-4 bg-gradient-to-r from-[#1E63C6] to-[#0F8A8C] bg-clip-text text-transparent">
                 9. LIMITATION OF LIABILITY
@@ -333,7 +333,7 @@ export default function Terms() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.55 }}
-              className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 mb-6"
+              className="bg-white/5 border border-white/10 rounded-2xl p-8 mb-6"
             >
               <h2 className="text-2xl font-bold text-white mb-4 bg-gradient-to-r from-[#1E63C6] to-[#0F8A8C] bg-clip-text text-transparent">
                 10. DISPUTE RESOLUTION AND GOVERNING LAW
@@ -358,7 +358,7 @@ export default function Terms() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.6 }}
-              className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 mb-6"
+              className="bg-white/5 border border-white/10 rounded-2xl p-8 mb-6"
             >
               <h2 className="text-2xl font-bold text-white mb-4 bg-gradient-to-r from-[#1E63C6] to-[#0F8A8C] bg-clip-text text-transparent">
                 11. TERMINATION

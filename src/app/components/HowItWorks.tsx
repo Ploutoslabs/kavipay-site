@@ -1,6 +1,7 @@
 import { motion, useInView } from 'motion/react';
 import { useRef } from 'react';
 import SparkleOverlay from './SparkleOverlay';
+import { useAmbientMotion } from './useAmbientMotion';
 import { Download, Wallet, CreditCard, ShoppingBag } from 'lucide-react';
 
 const steps = [
@@ -65,7 +66,7 @@ function StepCard({ step, index }: { step: typeof steps[0]; index: number }) {
 
         {/* Card */}
         <motion.div
-          className="relative bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-sm border border-white/10 rounded-2xl p-8 hover:border-[#1476B8]/50 transition-all duration-300"
+          className="relative bg-gradient-to-br from-white/5 to-white/10 border border-white/10 rounded-2xl p-8 hover:border-[#1476B8]/50 transition-all duration-300"
           whileHover={{ y: -5 }}
         >
           {/* Icon */}
@@ -92,35 +93,25 @@ function StepCard({ step, index }: { step: typeof steps[0]; index: number }) {
 export function HowItWorks() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
+  const ambient = useAmbientMotion();
+  const orbTransition = ambient.active
+    ? { duration: 20, repeat: Infinity, ease: 'easeInOut' as const }
+    : { duration: 0.6 };
 
   return (
     <section id="how-it-works" className="relative py-24 bg-gradient-to-b from-black via-[#1E63C6]/10 to-black overflow-hidden">
       <SparkleOverlay count={7} color="#0ea5e9" style="flowing" />
       {/* Animated background elements */}
-      <div className="absolute inset-0 overflow-hidden">
+      <div ref={ambient.ref} className="absolute inset-0 overflow-hidden">
         <motion.div
           className="absolute top-1/4 left-0 w-96 h-96 bg-[#1E63C6]/10 rounded-full blur-3xl"
-          animate={{
-            x: [0, 100, 0],
-            y: [0, 50, 0],
-          }}
-          transition={{
-            duration: 20,
-            repeat: Infinity,
-            ease: 'easeInOut',
-          }}
+          animate={ambient.active ? { x: [0, 100, 0], y: [0, 50, 0] } : { x: 0, y: 0 }}
+          transition={orbTransition}
         />
         <motion.div
           className="absolute bottom-1/4 right-0 w-96 h-96 bg-[#0F8A8C]/10 rounded-full blur-3xl"
-          animate={{
-            x: [0, -100, 0],
-            y: [0, -50, 0],
-          }}
-          transition={{
-            duration: 20,
-            repeat: Infinity,
-            ease: 'easeInOut',
-          }}
+          animate={ambient.active ? { x: [0, -100, 0], y: [0, -50, 0] } : { x: 0, y: 0 }}
+          transition={orbTransition}
         />
       </div>
 

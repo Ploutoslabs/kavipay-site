@@ -82,7 +82,7 @@ export default function Status() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 text-center"
+            className="bg-white/5 border border-white/10 rounded-2xl p-8 text-center"
           >
             <div className="flex items-center justify-center space-x-3 mb-4">
               <CheckCircle className="w-8 h-8 text-green-500" aria-hidden="true" />
@@ -132,7 +132,7 @@ export default function Status() {
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.05 }}
-                className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-6 hover:bg-white/10 transition-all"
+                className="bg-white/5 border border-white/10 rounded-xl p-6 hover:bg-white/10 transition-all"
               >
                 <div className="flex items-start justify-between gap-4">
                   <div className="flex items-start space-x-4 flex-1">
@@ -188,7 +188,7 @@ export default function Status() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 text-center"
+            className="bg-white/5 border border-white/10 rounded-2xl p-8 text-center"
           >
             <CheckCircle
               className="w-10 h-10 text-green-500 mx-auto mb-4"
