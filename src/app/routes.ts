@@ -18,8 +18,12 @@ import Status from "./pages/Status";
 import DeleteAccount from "./pages/DeleteAccount";
 import Referral from "./pages/Referral";
 import KavipayKYCPolicyPage from "./pages/KavipayKYCPolicyPage";
+import SupportChat from "./pages/SupportChat";
 
 export const router = createBrowserRouter([
+  // Outside RootLayout: that layout mounts the widget with its own bubble,
+  // and this page loads it itself for the app to embed.
+  { path: "/support-chat", Component: SupportChat },
   {
     path: "/",
     Component: RootLayout,
