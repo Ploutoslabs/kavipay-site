@@ -265,7 +265,7 @@ export default function FAQ() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 text-center">
+            className="bg-white/5 border border-white/10 rounded-2xl p-8 text-center">
             <h2 className="text-2xl font-bold mb-4 bg-gradient-to-r from-[#1E63C6] to-[#0F8A8C] bg-clip-text text-transparent">
               Didn't find your answer?
             </h2>

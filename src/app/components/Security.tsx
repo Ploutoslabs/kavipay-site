@@ -3,6 +3,7 @@ import { useRef } from 'react';
 import { Shield, Lock, Eye, Fingerprint, Clock } from 'lucide-react';
 import SparkleOverlay from './SparkleOverlay';
 import { ComingSoonBadge } from './ComingSoonBadge';
+import { useAmbientMotion } from './useAmbientMotion';
 import { CERTIFICATIONS } from '../config/features';
 
 const securityFeatures = [
@@ -31,12 +32,13 @@ const securityFeatures = [
 export function Security() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
+  const ambient = useAmbientMotion();
 
   return (
     <section id="security" className="relative py-24 bg-gradient-to-b from-black via-gray-900 to-black overflow-hidden">
       <SparkleOverlay count={9} color="#10b981" style="pulse" />
       {/* Animated background */}
-      <div className="absolute inset-0">
+      <div ref={ambient.ref} className="absolute inset-0">
         {/* Grid pattern */}
         <div className="absolute inset-0 opacity-20" style={{
           backgroundImage: 'linear-gradient(rgba(30, 99, 198, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(30, 99, 198, 0.1) 1px, transparent 1px)',
@@ -54,16 +56,16 @@ export function Security() {
               x: '-50%',
               y: '-50%',
             }}
-            animate={{
-              scale: [1, 1.5, 1],
-              opacity: [0.1, 0.3, 0.1],
-            }}
-            transition={{
-              duration: 4,
-              delay: i * 1.3,
-              repeat: Infinity,
-              ease: 'easeInOut',
-            }}
+            animate={
+              ambient.active
+                ? { scale: [1, 1.5, 1], opacity: [0.1, 0.3, 0.1] }
+                : { scale: 1, opacity: 0.1 }
+            }
+            transition={
+              ambient.active
+                ? { duration: 4, delay: i * 1.3, repeat: Infinity, ease: 'easeInOut' }
+                : { duration: 0.6 }
+            }
           />
         ))}
       </div>
@@ -78,14 +80,12 @@ export function Security() {
         >
           <motion.div
             className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-[#1E63C6] via-[#1476B8] to-[#0F8A8C] rounded-2xl mb-8"
-            animate={{
-              rotate: [0, 5, -5, 0],
-            }}
-            transition={{
-              duration: 4,
-              repeat: Infinity,
-              ease: 'easeInOut',
-            }}
+            animate={ambient.active ? { rotate: [0, 5, -5, 0] } : { rotate: 0 }}
+            transition={
+              ambient.active
+                ? { duration: 4, repeat: Infinity, ease: 'easeInOut' }
+                : { duration: 0.6 }
+            }
           >
             <Shield className="w-10 h-10 text-white" />
           </motion.div>
@@ -115,7 +115,7 @@ export function Security() {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 className="relative group"
               >
-                <div className="relative bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 text-center hover:border-[#1476B8]/50 transition-all duration-300">
+                <div className="relative bg-white/5 border border-white/10 rounded-2xl p-6 text-center hover:border-[#1476B8]/50 transition-all duration-300">
                   <motion.div
                     className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-[#1E63C6]/20 via-[#1476B8]/20 to-[#0F8A8C]/20 rounded-xl mb-4"
                     whileHover={{ scale: 1.1, rotate: 5 }}
@@ -158,7 +158,7 @@ export function Security() {
             {CERTIFICATIONS.map((certification) => (
               <motion.li
                 key={certification}
-                className="flex items-center space-x-2 bg-white/[0.02] backdrop-blur-sm border border-white/[0.07] rounded-full px-6 py-3"
+                className="flex items-center space-x-2 bg-white/[0.02] border border-white/[0.07] rounded-full px-6 py-3"
                 whileHover={{ scale: 1.05 }}
               >
                 <Clock className="w-4 h-4 text-[#7BB8E8]/70" aria-hidden="true" />

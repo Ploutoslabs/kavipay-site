@@ -145,7 +145,7 @@ export default function DeleteAccount() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-all"
+                className="bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-all"
               >
                 <h3 className="text-lg font-semibold text-white mb-2">{item.title}</h3>
                 <p className="text-white/60">{item.description}</p>
@@ -163,7 +163,7 @@ export default function DeleteAccount() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8"
+              className="bg-white/5 border border-white/10 rounded-2xl p-8"
             >
               <div className="flex items-center space-x-3 mb-8">
                 <Trash2 className="w-8 h-8 text-red-500" />
@@ -253,7 +253,7 @@ export default function DeleteAccount() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 text-center"
+              className="bg-white/5 border border-white/10 rounded-2xl p-8 text-center"
             >
               <div className="flex justify-center mb-6">
                 <div className="w-16 h-16 bg-blue-500/20 rounded-full flex items-center justify-center">
@@ -307,7 +307,7 @@ export default function DeleteAccount() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 text-center"
+            className="bg-white/5 border border-white/10 rounded-2xl p-8 text-center"
           >
             <h2 className="text-2xl font-bold mb-4 text-white">
               Have Questions About Account Deletion?

@@ -86,7 +86,7 @@ function HelpCenterSection() {
                 initial={{ opacity: 0, y: 30 }}
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 hover:border-[#1476B8]/50 transition-all cursor-pointer group text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1476B8]"
+                className="bg-white/5 border border-white/10 rounded-2xl p-6 hover:border-[#1476B8]/50 transition-all cursor-pointer group text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1476B8]"
               >
                 <div className="w-12 h-12 bg-gradient-to-br from-[#1E63C6] to-[#0F8A8C] rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                   <Icon className="w-6 h-6 text-white" aria-hidden="true" />
@@ -182,7 +182,7 @@ function DocumentationSection() {
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6"
+              className="bg-white/5 border border-white/10 rounded-2xl p-6"
             >
               <h3 className="text-2xl font-bold text-white mb-3">{section.title}</h3>
               <p className="text-white/60 mb-6">{section.description}</p>
@@ -358,7 +358,7 @@ function StatusSection() {
               initial={{ opacity: 0, x: -30 }}
               animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 flex items-center space-x-4"
+              className="bg-white/5 border border-white/10 rounded-2xl p-6 flex items-center space-x-4"
             >
               <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0" aria-hidden="true" />
               <div>

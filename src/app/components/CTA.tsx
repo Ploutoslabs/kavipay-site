@@ -1,7 +1,8 @@
-import { motion, useInView } from "motion/react";
-import { useRef, useState } from "react";
+import { motion, useInView, useMotionTemplate, useMotionValue } from "motion/react";
+import { useMemo, useRef } from "react";
 import { ArrowRight, Apple, Play, ShieldCheck, BadgeCheck, Wallet } from "lucide-react";
 import SparkleOverlay from "./SparkleOverlay";
+import { useAmbientMotion } from "./useAmbientMotion";
 import { APP_STORE_URL, GOOGLE_PLAY_URL } from "../config/links";
 
 /**
@@ -18,17 +19,35 @@ const TRUST_SIGNALS = [
   { icon: ShieldCheck, label: "PCI DSS compliant partners" },
 ];
 
+const FLOATER_COUNT = 10;
+
 export function CTA() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const ambient = useAmbientMotion();
+
+  // Motion values update the spotlight without re-rendering the section.
+  // Previously a state update per mousemove re-rendered everything here and
+  // re-randomised (and restarted) every floating particle.
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+  const spotlight = useMotionTemplate`radial-gradient(circle at ${mouseX}px ${mouseY}px, rgba(255,255,255,0.3), transparent 40%)`;
+
+  const floaters = useMemo(
+    () =>
+      Array.from({ length: FLOATER_COUNT }, () => ({
+        left: `${Math.random() * 100}%`,
+        top: `${Math.random() * 100}%`,
+        duration: 3 + Math.random() * 2,
+        delay: Math.random() * 2,
+      })),
+    [],
+  );
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
-    setMousePosition({
-      x: e.clientX - rect.left,
-      y: e.clientY - rect.top,
-    });
+    mouseX.set(e.clientX - rect.left);
+    mouseY.set(e.clientY - rect.top);
   };
 
   return (
@@ -47,29 +66,24 @@ export function CTA() {
             {/* Animated gradient overlay */}
             <motion.div
               className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent"
-              style={{
-                background: `radial-gradient(circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(255,255,255,0.3), transparent 40%)`,
-              }}
+              style={{ background: spotlight }}
             />
 
             {/* Floating elements */}
-            <div className="absolute inset-0 overflow-hidden">
-              {[...Array(10)].map((_, i) => (
+            <div ref={ambient.ref} className="absolute inset-0 overflow-hidden">
+              {ambient.active && floaters.map((floater, i) => (
                 <motion.div
                   key={i}
                   className="absolute w-2 h-2 bg-white/30 rounded-full"
-                  style={{
-                    left: `${Math.random() * 100}%`,
-                    top: `${Math.random() * 100}%`,
-                  }}
+                  style={{ left: floater.left, top: floater.top }}
                   animate={{
                     y: [0, -20, 0],
                     opacity: [0.3, 0.6, 0.3],
                   }}
                   transition={{
-                    duration: 3 + Math.random() * 2,
+                    duration: floater.duration,
                     repeat: Infinity,
-                    delay: Math.random() * 2,
+                    delay: floater.delay,
                   }}
                 />
               ))}

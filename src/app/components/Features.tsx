@@ -1,5 +1,5 @@
-import { motion, useInView, useReducedMotion } from 'motion/react';
-import { useRef, useState } from 'react';
+import { motion, useInView, useReducedMotion, useSpring } from 'motion/react';
+import { useRef } from 'react';
 import { CreditCard, Shield, Zap, Globe, Wallet, TrendingUp } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import SparkleOverlay from './SparkleOverlay';
@@ -65,9 +65,13 @@ const features: FeatureCardData[] = [
   },
 ];
 
+const TILT_SPRING = { stiffness: 300, damping: 30 };
+
 function FeatureCard({ feature, index }: { feature: FeatureCardData; index: number }) {
-  const [rotateX, setRotateX] = useState(0);
-  const [rotateY, setRotateY] = useState(0);
+  // Springs driven by motion values: the tilt follows the cursor without a
+  // React re-render on every mousemove.
+  const rotateX = useSpring(0, TILT_SPRING);
+  const rotateY = useSpring(0, TILT_SPRING);
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
   const reduceMotion = useReducedMotion();
@@ -82,13 +86,13 @@ function FeatureCard({ feature, index }: { feature: FeatureCardData; index: numb
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
 
-    setRotateX((y - rect.height / 2) / 10);
-    setRotateY((rect.width / 2 - x) / 10);
+    rotateX.set((y - rect.height / 2) / 10);
+    rotateY.set((rect.width / 2 - x) / 10);
   };
 
   const handleMouseLeave = () => {
-    setRotateX(0);
-    setRotateY(0);
+    rotateX.set(0);
+    rotateY.set(0);
   };
 
   const Icon = feature.icon;
@@ -101,14 +105,11 @@ function FeatureCard({ feature, index }: { feature: FeatureCardData; index: numb
       transition={{ duration: 0.6, delay: index * 0.1 }}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      style={{
-        transform: `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`,
-        transition: 'transform 0.1s ease-out',
-      }}
+      style={{ rotateX, rotateY, transformPerspective: 1000 }}
       className="group relative"
     >
       <div
-        className={`relative h-full rounded-2xl border p-8 backdrop-blur-sm transition-colors ${
+        className={`relative h-full rounded-2xl border p-8 transition-colors ${
           isAvailable
             ? 'border-white/10 bg-white/5 hover:bg-white/10'
             : 'border-white/[0.07] bg-white/[0.02] hover:bg-white/[0.05]'

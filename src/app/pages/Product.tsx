@@ -82,7 +82,7 @@ function FeaturesSection() {
                 initial={{ opacity: 0, y: 30 }}
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className={`backdrop-blur-sm border rounded-2xl p-8 hover:border-[#1476B8]/50 transition-all ${
+                className={`border rounded-2xl p-8 hover:border-[#1476B8]/50 transition-all ${
                   isAvailable
                     ? 'bg-white/5 border-white/10'
                     : 'bg-white/[0.02] border-white/[0.07]'
@@ -146,7 +146,7 @@ function CardsSection() {
             initial={{ opacity: 0, x: -30 }}
             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 }}
             transition={{ duration: 0.8 }}
-            className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8"
+            className="bg-white/5 border border-white/10 rounded-2xl p-8"
           >
             <h3 className="text-2xl font-bold text-white mb-4">Virtual Card</h3>
             <p className="text-white/60 mb-6">Perfect for online shopping and digital subscriptions</p>
@@ -177,7 +177,7 @@ function CardsSection() {
             initial={{ opacity: 0, x: 30 }}
             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 30 }}
             transition={{ duration: 0.8 }}
-            className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8"
+            className="bg-white/5 border border-white/10 rounded-2xl p-8"
           >
             <h3 className="text-2xl font-bold text-white mb-4">Physical Card</h3>
             <p className="text-white/60 mb-6">A card in your wallet for everyday spending</p>
@@ -273,7 +273,7 @@ function SecuritySection() {
               {CERTIFICATIONS.map((cert) => (
                 <li
                   key={cert}
-                  className="bg-white/[0.02] backdrop-blur-sm border border-white/[0.07] rounded-xl p-4 text-center"
+                  className="bg-white/[0.02] border border-white/[0.07] rounded-xl p-4 text-center"
                 >
                   <div className="text-white/70 font-semibold">{cert}</div>
                   <div className="mt-1 text-xs uppercase tracking-wider text-[#7BB8E8]/70">

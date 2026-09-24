@@ -88,7 +88,7 @@ function AboutSection() {
               return (
                 <div
                   key={principle.title}
-                  className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 text-center"
+                  className="bg-white/5 border border-white/10 rounded-2xl p-6 text-center"
                 >
                   <div className="w-12 h-12 bg-gradient-to-br from-[#1E63C6] to-[#0F8A8C] rounded-xl flex items-center justify-center mx-auto mb-4">
                     <Icon className="w-6 h-6 text-white" aria-hidden="true" />

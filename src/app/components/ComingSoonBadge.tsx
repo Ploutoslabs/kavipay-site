@@ -51,7 +51,7 @@ export function ComingSoonBadge({
     // (e.g. on the gradient CTA card) without class conflicts.
     <span
       className={cn(
-        'inline-flex items-center rounded-full border border-[#1476B8]/40 bg-[#1476B8]/10 font-semibold uppercase tracking-wider text-[#7BB8E8] backdrop-blur-sm whitespace-nowrap',
+        'inline-flex items-center rounded-full border border-[#1476B8]/40 bg-[#1476B8]/10 font-semibold uppercase tracking-wider text-[#7BB8E8] whitespace-nowrap',
         pill,
         className,
       )}
