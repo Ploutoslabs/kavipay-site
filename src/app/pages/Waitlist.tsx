@@ -96,8 +96,10 @@ export default function Waitlist() {
       {/* Footer (always last) */}
       <Footer />
 
-      {/* Force Bitrix Dark Theme Override */}
-      <style jsx global>{`
+      {/* Force Bitrix Dark Theme Override.
+          Plain <style>: the `jsx global` attributes are a Next.js styled-jsx
+          idiom and this is a Vite app, so React was warning about them. */}
+      <style>{`
         .b24-form {
           background: black !important;
         }

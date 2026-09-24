@@ -7,14 +7,14 @@ const steps = [
   {
     number: '01',
     icon: Download,
-    title: 'Download KaviPay',
-    description: 'Get the app from App Store or Google Play and create your account in minutes',
+    title: 'Create Your Account',
+    description: 'Download from the App Store or Google Play, then complete KYC in minutes',
   },
   {
     number: '02',
     icon: Wallet,
     title: 'Fund Your Wallet',
-    description: 'Transfer crypto from any wallet or exchange to your KaviPay wallet',
+    description: 'Transfer Naira directly from your Nigerian bank account in seconds',
   },
   {
     number: '03',
@@ -26,7 +26,7 @@ const steps = [
     number: '04',
     icon: ShoppingBag,
     title: 'Start Spending',
-    description: 'Use your card anywhere in the world. Crypto converts to fiat automatically',
+    description: 'Shop online, pay your bills, and spend in store with your Kavipay card',
   },
 ];
 
@@ -142,7 +142,7 @@ export function HowItWorks() {
             </span>
           </h2>
           <p className="text-xl text-white/60 max-w-2xl mx-auto">
-            Join thousands of users who are already spending their crypto in the real world
+            From sign up to your first payment — here is exactly how KaviPay works
           </p>
         </motion.div>
 

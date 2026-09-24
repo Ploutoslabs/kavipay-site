@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- Primary Meta Tags -->
-    <title>KaviPay — Spend Anywhere. Fund with Crypto or Naira. Pay Bills.</title>
-    <meta name="title" content="KaviPay — Spend Anywhere. Fund with Crypto or Naira. Pay Bills." />
-    <meta name="description" content="Payment card management for Nigeria. Get instant VISA & Mastercard virtual cards or physical Verve & Afrigo cards. Fund with crypto (USDC, USDT, SOL, ETH, BNB) or Naira. Pay bills, shop globally." />
+    <title>KaviPay — Virtual & Physical Cards. Fund with Naira. Pay Bills.</title>
+    <meta name="title" content="KaviPay — Virtual & Physical Cards. Fund with Naira. Pay Bills." />
+    <meta name="description" content="Payment card management for Nigeria. Get instant VISA & Mastercard virtual cards or physical Verve & Afrigo cards. Fund with Naira via bank transfer. Pay electricity, airtime, data and cable TV bills." />
     <meta name="keywords" content="KaviPay, virtual card Nigeria, VISA card, Mastercard, Verve card, Afrigo card, crypto to naira, USDC, USDT, pay bills Nigeria, airtime, electricity, DStv, GOtv, Startimes, cryptocurrency card, digital wallet, PloutosLabs, online shopping Nigeria, buy airtime with crypto, pay electricity Nigeria, MTN airtime, Glo data, Airtel, 9mobile, POS payment, ATM card Nigeria" />
     <meta name="author" content="PloutosLabs International Ltd" />
     <meta name="robots" content="index, follow" />
@@ -27,8 +27,8 @@
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://www.kavipay.io/" />
-    <meta property="og:title" content="KaviPay — Spend Anywhere. Fund with Crypto or Naira. Pay Bills." />
-    <meta property="og:description" content="Get instant VISA & Mastercard virtual cards or physical Verve & Afrigo cards. Fund with crypto or Naira. Pay electricity, airtime, cable TV and more. Trusted by licensed partners — PCI DSS compliant." />
+    <meta property="og:title" content="KaviPay — Virtual & Physical Cards. Fund with Naira. Pay Bills." />
+    <meta property="og:description" content="Get instant VISA & Mastercard virtual cards or physical Verve & Afrigo cards. Fund with Naira via bank transfer. Pay electricity, airtime, cable TV and more." />
     <meta property="og:image" content="https://www.kavipay.io/og-image.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
@@ -39,8 +39,8 @@
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content="https://www.kavipay.io/" />
-    <meta name="twitter:title" content="KaviPay — Spend Anywhere. Fund with Crypto or Naira. Pay Bills." />
-    <meta name="twitter:description" content="Instant VISA & Mastercard virtual cards. Physical Verve & Afrigo cards. Fund with crypto or Naira. Pay electricity, airtime, DStv, GOtv and more." />
+    <meta name="twitter:title" content="KaviPay — Virtual & Physical Cards. Fund with Naira. Pay Bills." />
+    <meta name="twitter:description" content="Instant VISA & Mastercard virtual cards. Physical Verve & Afrigo cards. Fund with Naira. Pay electricity, airtime, DStv, GOtv and more." />
     <meta name="twitter:image" content="https://www.kavipay.io/og-image.png" />
     <meta name="twitter:image:alt" content="KaviPay — Virtual and physical payment cards for Nigeria" />
     <meta name="twitter:site" content="@Kavipay" />
@@ -54,6 +54,9 @@
     <meta property="al:ios:app_name" content="KaviPay" />
     <meta property="al:ios:url" content="kavipay://" />
     <meta name="apple-itunes-app" content="app-id=6759305057" />
+    <meta property="al:android:package" content="com.kavipay.app" />
+    <meta property="al:android:app_name" content="KaviPay" />
+    <meta property="al:android:url" content="kavipay://" />
 
     <!-- Structured Data / JSON-LD -->
     <script type="application/ld+json">
@@ -63,9 +66,12 @@
       "name": "KaviPay",
       "operatingSystem": "iOS, Android",
       "applicationCategory": "FinanceApplication",
-      "description": "Payment card management for Nigeria. Get instant VISA & Mastercard virtual cards or physical Verve & Afrigo cards. Fund with crypto or Naira. Pay bills, shop globally.",
+      "description": "Payment card management for Nigeria. Get instant VISA & Mastercard virtual cards or physical Verve & Afrigo cards. Fund with Naira via bank transfer. Pay electricity, airtime, data and cable TV bills.",
       "url": "https://www.kavipay.io",
-      "downloadUrl": "https://apps.apple.com/ng/app/kavipay/id6759305057",
+      "downloadUrl": [
+        "https://apps.apple.com/ng/app/kavipay/id6759305057",
+        "https://play.google.com/store/apps/details?id=com.kavipay.app"
+      ],
       "offers": {
         "@type": "Offer",
         "price": "0",
@@ -73,9 +79,13 @@
       },
       "creator": {
         "@type": "Organization",
-        "name": "PloutosLabs International Ltd",
+        "name": "KAVIPAY Limited",
         "url": "https://www.kavipay.io",
         "email": "support@kavipay.io",
+        "parentOrganization": {
+          "@type": "Organization",
+          "name": "PloutosLabs International Ltd"
+        },
         "sameAs": [
           "https://x.com/Kavipay"
         ]
@@ -83,14 +93,13 @@
       "featureList": [
         "Instant VISA and Mastercard virtual cards",
         "Physical Verve and Afrigo cards",
-        "Fund with USDC, USDT, SOL, ETH, BNB, POL",
         "Fund with Naira via bank transfer",
         "Pay electricity bills (AEDC, EKEDC, IBEDC, IKEDC, PHED)",
         "Buy airtime and data (MTN, Glo, Airtel, 9mobile)",
         "Pay cable TV (DStv, GOtv, Startimes)",
         "Biometric authentication and 2FA",
         "Real-time transaction tracking",
-        "PCI DSS compliant processing"
+        "Withdraw to your Nigerian bank account"
       ]
     }
     </script>

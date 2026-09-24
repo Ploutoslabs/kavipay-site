@@ -1,7 +1,9 @@
 import { motion, useInView } from 'motion/react';
 import { useRef } from 'react';
-import { Shield, Lock, Eye, Fingerprint, CheckCircle } from 'lucide-react';
+import { Shield, Lock, Eye, Fingerprint, Clock } from 'lucide-react';
 import SparkleOverlay from './SparkleOverlay';
+import { ComingSoonBadge } from './ComingSoonBadge';
+import { CERTIFICATIONS } from '../config/features';
 
 const securityFeatures = [
   {
@@ -98,7 +100,7 @@ export function Security() {
             </span>
           </h2>
           <p className="text-xl text-white/60 max-w-2xl mx-auto">
-            Your assets are protected by military-grade security with multiple layers of protection
+            Your account and your funds are protected by multiple independent layers of security
           </p>
         </motion.div>
 
@@ -131,23 +133,42 @@ export function Security() {
           })}
         </div>
 
-        {/* Compliance badges */}
+        {/* Compliance roadmap.
+            These certifications are being pursued, not held. The green ticks
+            that used to sit here read as "achieved", so they are gone. */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="flex flex-wrap items-center justify-center gap-8"
         >
-          {['PCI DSS Compliant', 'SOC 2 Certified', 'GDPR Compliant', 'ISO 27001'].map((badge, index) => (
-            <motion.div
-              key={index}
-              className="flex items-center space-x-2 bg-white/5 backdrop-blur-sm border border-white/10 rounded-full px-6 py-3"
-              whileHover={{ scale: 1.05 }}
-            >
-              <CheckCircle className="w-5 h-5 text-green-400" />
-              <span className="text-white/80 font-medium">{badge}</span>
-            </motion.div>
-          ))}
+          <div className="text-center mb-8">
+            <div className="inline-flex flex-wrap items-center justify-center gap-3">
+              <h3 className="text-lg font-semibold text-white/80">
+                Compliance Roadmap
+              </h3>
+              <ComingSoonBadge size="sm" />
+            </div>
+            <p className="mt-3 text-sm text-white/50 max-w-xl mx-auto leading-relaxed">
+              We're actively working towards these certifications. They are not yet
+              in place, and we'll update this page as each one is achieved.
+            </p>
+          </div>
+
+          <ul className="flex flex-wrap items-center justify-center gap-4">
+            {CERTIFICATIONS.map((certification) => (
+              <motion.li
+                key={certification}
+                className="flex items-center space-x-2 bg-white/[0.02] backdrop-blur-sm border border-white/[0.07] rounded-full px-6 py-3"
+                whileHover={{ scale: 1.05 }}
+              >
+                <Clock className="w-4 h-4 text-[#7BB8E8]/70" aria-hidden="true" />
+                <span className="text-white/60 font-medium">{certification}</span>
+                <span className="text-xs uppercase tracking-wider text-[#7BB8E8]/70">
+                  In progress
+                </span>
+              </motion.li>
+            ))}
+          </ul>
         </motion.div>
       </div>
     </section>

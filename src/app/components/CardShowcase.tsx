@@ -1,5 +1,5 @@
 import { motion, useInView } from 'motion/react';
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 import { Smartphone, CreditCard as CreditCardIcon } from 'lucide-react';
 import SparkleOverlay from './SparkleOverlay';
 
@@ -9,7 +9,6 @@ import card2Img from '../../assets/card2.png';
 export function CardShowcase() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
-  const [hoveredCard, setHoveredCard] = useState<'virtual' | 'physical' | null>(null);
 
   return (
     <section id="cards" className="relative py-24 bg-black overflow-hidden">
@@ -32,7 +31,7 @@ export function CardShowcase() {
         >
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
             <span className="bg-gradient-to-r from-white to-white/60 bg-clip-text text-transparent">
-              Your Crypto,
+              Your Money,
             </span>
             <br />
             <span className="bg-gradient-to-r from-[#1E63C6] via-[#1476B8] to-[#0F8A8C] bg-clip-text text-transparent">
@@ -50,8 +49,6 @@ export function CardShowcase() {
             initial={{ opacity: 0, x: -50 }}
             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            onHoverStart={() => setHoveredCard('virtual')}
-            onHoverEnd={() => setHoveredCard(null)}
             className="relative group"
           >
             <div className="relative aspect-[1.586/1] rounded-3xl overflow-hidden shadow-lg">
@@ -84,8 +81,6 @@ export function CardShowcase() {
             initial={{ opacity: 0, x: 50 }}
             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            onHoverStart={() => setHoveredCard('physical')}
-            onHoverEnd={() => setHoveredCard(null)}
             className="relative group"
           >
             <div className="relative aspect-[1.586/1] rounded-3xl overflow-hidden shadow-lg">
@@ -108,7 +103,7 @@ export function CardShowcase() {
                 <span>Physical Card</span>
               </h3>
               <p className="text-white/60 mb-4">
-                Premium metal card delivered to your door. Use it anywhere cards are accepted worldwide.
+                A physical Kavipay card delivered to your door, for everyday in-store spending and ATM withdrawals.
               </p>
             </motion.div>
           </motion.div>

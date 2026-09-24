@@ -12,19 +12,19 @@ const faqs = [
     questions: [
       {
         q: "What is Kavipay?",
-        a: "Kavipay is Nigeria\u2019s trusted payment card app that makes managing your money simple and secure. We offer instant virtual VISA and Mastercard cards for global online spending, as well as physical Verve and Afrigo cards for local Nigerian transactions. You can fund your cards with cryptocurrency or Naira and use them for shopping, subscriptions, bill payments, and more.",
+        a: "Kavipay is a Nigerian payment card app that makes managing your money simple and secure. We offer instant virtual VISA and Mastercard cards for online spending, as well as physical Verve and Afrigo cards for local Nigerian transactions. You can fund your cards with cryptocurrency or Naira and use them for shopping, subscriptions, bill payments, and more.",
       },
       {
         q: "Who operates Kavipay?",
-        a: "Kavipay is operated by PloutosLabs International Ltd, a Nigerian fintech company. We work in partnership with licensed financial institutions including Safe Haven Microfinance Bank (CBN Licensed), Sudo.africa (PCI DSS Compliant), and Payscribe (PCI DSS Compliant) to provide our services.",
+        a: "Kavipay is operated by KAVIPAY Limited, a subsidiary of PloutosLabs International Ltd, a Nigerian fintech company. We work in partnership with licensed financial institutions including Safe Haven Microfinance Bank (CBN Licensed), Sudo.africa (PCI DSS Compliant), and Payscribe (PCI DSS Compliant) to provide our services.",
       },
       {
         q: "What services does Kavipay offer?",
-        a: "Kavipay offers virtual cards that work globally, physical cards for Nigeria, bill payments, crypto funding, bank transfers, and smart money tools for budgeting and spending insights.",
+        a: "Kavipay offers instant virtual cards for online payments, physical cards for Nigeria, bill payments, crypto funding, Naira bank transfers, withdrawals, and full transaction history. Global acceptance, a multi-currency wallet and real-time rates are still in development and are not available yet.",
       },
       {
         q: "Is Kavipay available only in Nigeria?",
-        a: "While we started in Nigeria, Kavipay is available to users globally. Virtual cards work worldwide, and physical cards are currently available in Nigeria with expansion planned.",
+        a: "We started in Nigeria. Virtual cards can be used with online merchants that accept VISA and Mastercard, and physical cards are currently available in Nigeria. Broader global acceptance is in development and we will announce it when it ships.",
       },
       {
         q: "How do I create a Kavipay account?",
@@ -45,11 +45,11 @@ const faqs = [
     questions: [
       {
         q: "What types of cards does Kavipay offer?",
-        a: "We offer instant virtual cards that work with Apple Pay and Google Pay, plus physical Visa/Mastercard cards. Virtual cards are available immediately, physical cards take 3-5 business days.",
+        a: "We offer instant virtual VISA and Mastercard cards for online payments, plus physical Verve and Afrigo cards for use in Nigeria. Virtual cards are issued immediately after verification; physical cards take 3-5 business days to arrive.",
       },
       {
         q: "How quickly do I get my virtual card?",
-        a: "Virtual cards are issued instantly after account verification. You can start using them in seconds with Apple Pay, Google Pay, or online merchants.",
+        a: "Virtual cards are issued instantly after account verification. You can start using them with online merchants within seconds.",
       },
       {
         q: "Can I freeze or block my card?",
@@ -74,7 +74,7 @@ const faqs = [
       },
       {
         q: "What exchange rate do you use for crypto?",
-        a: "We use competitive real-time market rates with transparent pricing. The exact exchange rate is displayed before you confirm any transaction, so there are no hidden fees or surprises.",
+        a: "We use competitive market rates with transparent pricing. The exact exchange rate is displayed before you confirm any transaction, so there are no hidden fees or surprises. Live real-time rate streaming is a separate feature still in development.",
       },
       {
         q: "Is there a minimum or maximum funding amount?",

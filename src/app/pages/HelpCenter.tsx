@@ -1,5 +1,5 @@
 import { motion } from "motion/react";
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { Navigation } from "../components/Navigation";
 import { PageHeader } from "../components/PageHeader";
 import { Footer } from "../components/Footer";
@@ -196,16 +196,16 @@ export default function HelpCenter() {
                 className="px-6 py-3 bg-gradient-to-r from-[#1E63C6] to-[#0F8A8C] text-white rounded-xl font-semibold hover:opacity-90 transition-opacity">
                 Email Support
               </a>
-              <a
-                href="/contact"
+              <Link
+                to="/contact"
                 className="px-6 py-3 bg-white/10 hover:bg-white/20 text-white rounded-xl font-semibold transition-colors border border-white/10">
-                Live Chat
-              </a>
-              <a
-                href="/knowledge-base"
+                Contact Us
+              </Link>
+              <Link
+                to="/knowledge-base"
                 className="px-6 py-3 bg-white/10 hover:bg-white/20 text-white rounded-xl font-semibold transition-colors border border-white/10">
                 Knowledge Base
-              </a>
+              </Link>
             </div>
           </motion.div>
         </div>

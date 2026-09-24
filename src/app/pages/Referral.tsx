@@ -1,11 +1,10 @@
 import { useParams } from 'react-router';
-import { Apple, Download, Smartphone, Eye, EyeOff, Loader2 } from 'lucide-react';
+import { Apple, Play, Eye, EyeOff, Loader2 } from 'lucide-react';
 import { useState } from 'react';
 import { Navigation } from '../components/Navigation';
 import { Footer } from '../components/Footer';
+import { APP_STORE_URL, GOOGLE_PLAY_URL } from '../config/links';
 
-const APP_STORE_URL = 'https://apps.apple.com/ng/app/kavipay/id6759305057';
-const APK_URL = 'https://github.com/Ploutoslabs/kavipay-site/releases/download/v1.1.1/kavipay.apk';
 const API_URL = 'https://mining-api-123lfk.ploutoslabs.io';
 
 function DownloadButtons() {
@@ -17,7 +16,7 @@ function DownloadButtons() {
         rel="noopener noreferrer"
         className="flex items-center justify-center gap-3 w-full px-6 py-4 bg-white text-black rounded-full font-semibold text-lg hover:bg-white/90 transition-colors"
       >
-        <Apple className="w-6 h-6" />
+        <Apple className="w-6 h-6" aria-hidden="true" />
         <div className="text-left">
           <div className="text-xs text-black/60">Download on the</div>
           <div className="font-bold">App Store</div>
@@ -25,23 +24,17 @@ function DownloadButtons() {
       </a>
 
       <a
-        href={APK_URL}
-        className="flex items-center justify-center gap-3 w-full px-6 py-4 bg-white/10 text-white rounded-full font-semibold text-lg hover:bg-white/20 transition-colors"
+        href={GOOGLE_PLAY_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="flex items-center justify-center gap-3 w-full px-6 py-4 bg-white text-black rounded-full font-semibold text-lg hover:bg-white/90 transition-colors"
       >
-        <Download className="w-6 h-6" />
+        <Play className="w-6 h-6 fill-current" aria-hidden="true" />
         <div className="text-left">
-          <div className="text-xs text-white/60">Download</div>
-          <div className="font-bold">Android APK</div>
-        </div>
-      </a>
-
-      <div className="flex items-center justify-center gap-3 w-full px-6 py-4 bg-white/5 text-white/30 rounded-full font-semibold text-lg cursor-not-allowed">
-        <Smartphone className="w-6 h-6" />
-        <div className="text-left">
-          <div className="text-xs text-white/20">Coming Soon</div>
+          <div className="text-xs text-black/60">Get it on</div>
           <div className="font-bold">Google Play</div>
         </div>
-      </div>
+      </a>
     </div>
   );
 }
@@ -136,7 +129,7 @@ export default function Referral() {
             {code ? "You've Been Invited!" : 'Join KaviPay'}
           </h1>
           <p className="text-white/70 text-lg mb-8">
-            Get virtual and physical cards, fund with crypto or naira, and pay bills.
+            Get virtual and physical cards, fund with Naira, and pay your bills.
           </p>
 
           {/* Registration Form */}

@@ -1,4 +1,5 @@
 import { createBrowserRouter } from "react-router";
+import RootLayout from "./RootLayout";
 import Home from "./pages/Home";
 import Waitlist from "./pages/Waitlist";
 import Product from "./pages/Product";
@@ -18,82 +19,30 @@ import DeleteAccount from "./pages/DeleteAccount";
 import Referral from "./pages/Referral";
 import KavipayKYCPolicyPage from "./pages/KavipayKYCPolicyPage";
 
-
 export const router = createBrowserRouter([
   {
     path: "/",
-    Component: Home,
-  },
-  {
-    path: "/waitlist",
-    Component: Waitlist,
-  },
-  {
-    path: "/product",
-    Component: Product,
-  },
-  {
-    path: "/company",
-    Component: Company,
-  },
-  {
-    path: "/partnership",
-    Component: Partnership,
-  },
-  {
-    path: "/resources",
-    Component: Resources,
-  },
-  {
-    path: "/help",
-    Component: HelpCenter,
-  },
-  {
-    path: "/faq",
-    Component: FAQ,
-  },
-  {
-    path: "/knowledge-base",
-    Component: KnowledgeBase,
-  },
-  {
-    path: "/contact",
-    Component: Contact,
-  },
-  {
-    path: "/status",
-    Component: Status,
-  },
-  {
-    path: "/delete-account",
-    Component: DeleteAccount,
-  },
-  {
-    path: "/terms",
-    Component: Terms,
-  },
-  {
-    path: "/privacy-policy",
-    Component: Privacy,
-  },
-  {
-    path: "/cookies",
-    Component: Cookies,
-  },
-  {
-    path: "/eula",
-    Component: EULA,
-  },
-  {
-    path: "/referral/:code",
-    Component: Referral,
-  },
-  {
-    path: "/referral",
-    Component: Referral,
-  },
-  {
-    path: "/kavipay-kyc-policy",
-    Component: KavipayKYCPolicyPage,
+    Component: RootLayout,
+    children: [
+      { index: true, Component: Home },
+      { path: "waitlist", Component: Waitlist },
+      { path: "product", Component: Product },
+      { path: "company", Component: Company },
+      { path: "partnership", Component: Partnership },
+      { path: "resources", Component: Resources },
+      { path: "help", Component: HelpCenter },
+      { path: "faq", Component: FAQ },
+      { path: "knowledge-base", Component: KnowledgeBase },
+      { path: "contact", Component: Contact },
+      { path: "status", Component: Status },
+      { path: "delete-account", Component: DeleteAccount },
+      { path: "terms", Component: Terms },
+      { path: "privacy-policy", Component: Privacy },
+      { path: "cookies", Component: Cookies },
+      { path: "eula", Component: EULA },
+      { path: "referral/:code", Component: Referral },
+      { path: "referral", Component: Referral },
+      { path: "kavipay-kyc-policy", Component: KavipayKYCPolicyPage },
+    ],
   },
 ]);

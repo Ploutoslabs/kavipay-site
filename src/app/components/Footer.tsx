@@ -4,10 +4,13 @@ import { Link } from 'react-router';
 import Logo from '../../assets/kavi-logo-dark.png';
 
 const footerLinks = {
+  // Homepage anchors are absolute so they also work from /help, /faq, etc.
+  // RootLayout handles scrolling to the hash after navigation.
   Product: [
-    { name: 'Features', path: '#features' },
-    { name: 'Cards', path: '#cards' },
-    { name: 'Security', path: '#security' },
+    { name: 'Features', path: '/#features' },
+    { name: 'Cards', path: '/#cards' },
+    { name: 'Security', path: '/#security' },
+    { name: 'Roadmap', path: '/#roadmap' },
   ],
   Company: [
     { name: 'About', path: '/company#about' },
@@ -79,23 +82,14 @@ export function Footer() {
               <ul className="space-y-3">
                 {links.map((link) => (
                   <li key={link.name}>
-                    {link.path.startsWith('/') && !link.path.includes('#') ? (
-                      // For internal routes, use Link component
-                      <Link
-                        to={link.path}
-                        className="text-white/60 hover:text-white transition-colors text-sm"
-                      >
-                        {link.name}
-                      </Link>
-                    ) : (
-                      // For anchor links and external links, use regular a tag
-                      <a
-                        href={link.path}
-                        className="text-white/60 hover:text-white transition-colors text-sm"
-                      >
-                        {link.name}
-                      </a>
-                    )}
+                    {/* Every footer destination is an internal route or a
+                        homepage anchor, so Link handles them all. */}
+                    <Link
+                      to={link.path}
+                      className="text-white/60 hover:text-white transition-colors text-sm"
+                    >
+                      {link.name}
+                    </Link>
                   </li>
                 ))}
               </ul>

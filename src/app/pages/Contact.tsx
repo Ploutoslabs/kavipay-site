@@ -5,30 +5,42 @@ import { Footer } from '../components/Footer';
 import { Mail, MessageSquare, Phone, Clock, Send } from 'lucide-react';
 import { useState } from 'react';
 
-const contactChannels = [
+interface ContactChannel {
+  icon: typeof Mail;
+  title: string;
+  description: string;
+  details: string;
+  action?: string;
+  link?: string;
+  /** Shown instead of a button when there is no destination to link to. */
+  hint?: string;
+}
+
+const contactChannels: ContactChannel[] = [
   {
     icon: Mail,
     title: 'Email Support',
-    description: 'Send us a message and we\'ll get back to you within 24 hours',
+    description: "Send us a message and we'll get back to you within 24 hours",
     details: 'support@kavipay.io',
     action: 'Send Email',
     link: 'mailto:support@kavipay.io',
   },
   {
+    // The chat widget loads on every page, so this points at it rather than
+    // offering a button that used to link to "#" and do nothing.
     icon: MessageSquare,
     title: 'Live Chat',
-    description: 'Get instant help from our support team in real-time',
+    description: 'Get instant help from our support team in real time',
     details: 'Available 24/7',
-    action: 'Open Chat',
-    link: '#',
+    hint: 'Open the chat bubble in the bottom corner of any page',
   },
   {
     icon: Phone,
     title: 'In-App Support',
-    description: 'Access support directly from your Kavipay mobile app',
+    description: 'Access support directly from your Kavipay account',
     details: '24/7 Live Chat',
-    action: 'Open App',
-    link: '#',
+    action: 'Open Kavipay',
+    link: 'https://app.kavipay.io/',
   },
   {
     icon: Clock,
@@ -38,6 +50,15 @@ const contactChannels = [
     action: 'File Complaint',
     link: 'mailto:complaints@kavipay.io',
   },
+];
+
+const SUBJECT_OPTIONS = [
+  { value: 'billing', label: 'Billing & Payments' },
+  { value: 'technical', label: 'Technical Support' },
+  { value: 'security', label: 'Security Issue' },
+  { value: 'complaint', label: 'Complaint' },
+  { value: 'feedback', label: 'Feedback' },
+  { value: 'other', label: 'Other' },
 ];
 
 const specializedContacts = [
@@ -74,12 +95,29 @@ export default function Contact() {
     }));
   };
 
+  /**
+   * There is no backend endpoint behind this form. It previously logged to the
+   * console and cleared itself, so users believed a message had been sent when
+   * nothing left the browser. It now composes a real email instead.
+   */
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission
-    console.log('Form data:', formData);
-    // Reset form
-    setFormData({ name: '', email: '', subject: '', message: '' });
+
+    const subjectLabel =
+      SUBJECT_OPTIONS.find((option) => option.value === formData.subject)?.label ??
+      'General enquiry';
+
+    const body = [
+      `Name: ${formData.name}`,
+      `Email: ${formData.email}`,
+      `Subject: ${subjectLabel}`,
+      '',
+      formData.message,
+    ].join('\n');
+
+    window.location.href = `mailto:support@kavipay.io?subject=${encodeURIComponent(
+      `[${subjectLabel}] Message from ${formData.name}`,
+    )}&body=${encodeURIComponent(body)}`;
   };
 
   return (
@@ -119,12 +157,21 @@ export default function Contact() {
                   </div>
                   <p className="text-white/60 text-sm mb-4">{channel.description}</p>
                   <p className="text-white/80 font-medium text-sm mb-4">{channel.details}</p>
-                  <a
-                    href={channel.link}
-                    className="inline-block px-4 py-2 bg-gradient-to-r from-[#1E63C6] to-[#0F8A8C] text-white rounded-lg font-semibold hover:opacity-90 transition-opacity text-sm"
-                  >
-                    {channel.action}
-                  </a>
+                  {channel.link ? (
+                    <a
+                      href={channel.link}
+                      {...(channel.link.startsWith('http')
+                        ? { target: '_blank', rel: 'noopener noreferrer' }
+                        : {})}
+                      className="inline-block px-4 py-2 bg-gradient-to-r from-[#1E63C6] to-[#0F8A8C] text-white rounded-lg font-semibold hover:opacity-90 transition-opacity text-sm"
+                    >
+                      {channel.action}
+                    </a>
+                  ) : (
+                    <p className="inline-block px-4 py-2 bg-white/5 border border-white/10 text-white/70 rounded-lg text-sm">
+                      {channel.hint}
+                    </p>
+                  )}
                 </motion.div>
               );
             })}
@@ -145,7 +192,8 @@ export default function Contact() {
               Send us a Message
             </h2>
             <p className="text-white/60 mb-8">
-              Fill out the form below and we'll get back to you as soon as possible.
+              Fill out the form below and we'll open a pre-filled email to our support
+              team. We reply as soon as possible.
             </p>
 
             <form onSubmit={handleSubmit} className="space-y-6">
@@ -186,12 +234,11 @@ export default function Contact() {
                   className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-white/30 focus:bg-white/10 transition-all"
                 >
                   <option value="">Select a subject...</option>
-                  <option value="billing">Billing & Payments</option>
-                  <option value="technical">Technical Support</option>
-                  <option value="security">Security Issue</option>
-                  <option value="complaint">Complaint</option>
-                  <option value="feedback">Feedback</option>
-                  <option value="other">Other</option>
+                  {SUBJECT_OPTIONS.map((option) => (
+                    <option key={option.value} value={option.value}>
+                      {option.label}
+                    </option>
+                  ))}
                 </select>
               </div>
 
@@ -214,9 +261,21 @@ export default function Contact() {
                 type="submit"
                 className="w-full flex items-center justify-center space-x-2 px-6 py-3 bg-gradient-to-r from-[#1E63C6] to-[#0F8A8C] text-white rounded-xl font-semibold hover:opacity-90 transition-opacity"
               >
-                <Send className="w-5 h-5" />
-                <span>Send Message</span>
+                <Send className="w-5 h-5" aria-hidden="true" />
+                <span>Compose Message</span>
               </motion.button>
+
+              <p className="text-center text-xs text-white/40">
+                This opens your email app with the details filled in. Prefer to write
+                directly? Email{' '}
+                <a
+                  href="mailto:support@kavipay.io"
+                  className="text-white/60 underline underline-offset-4"
+                >
+                  support@kavipay.io
+                </a>
+                .
+              </p>
             </form>
           </motion.div>
         </div>

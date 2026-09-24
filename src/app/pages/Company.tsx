@@ -3,7 +3,37 @@ import { useRef } from 'react';
 import { Navigation } from '../components/Navigation';
 import { PageHeader } from '../components/PageHeader';
 import { Footer } from '../components/Footer';
-import { Target, Users, Briefcase, Newspaper } from 'lucide-react';
+import { ComingSoonBadge } from '../components/ComingSoonBadge';
+import { useComingSoon } from '../components/ComingSoonProvider';
+import { Target, ShieldCheck, Landmark, Layers } from 'lucide-react';
+
+/**
+ * Replaces a grid of invented metrics (75K users / 50+ countries / 50K+ daily
+ * transactions). These describe how the company operates, which we can stand
+ * behind, rather than numbers we cannot evidence.
+ */
+const principles = [
+  {
+    icon: Target,
+    title: 'Mission-Driven',
+    detail: 'Making crypto as easy to spend as the money in your pocket',
+  },
+  {
+    icon: Landmark,
+    title: 'Licensed Partners',
+    detail: 'We build on CBN-licensed and PCI DSS compliant infrastructure',
+  },
+  {
+    icon: ShieldCheck,
+    title: 'Security First',
+    detail: 'Encryption, biometrics and 2FA on every account by default',
+  },
+  {
+    icon: Layers,
+    title: 'Built in the Open',
+    detail: 'We say what has shipped and what is still in development',
+  },
+];
 
 function AboutSection() {
   const ref = useRef(null);
@@ -51,22 +81,20 @@ function AboutSection() {
             initial={{ opacity: 0, x: 30 }}
             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 30 }}
             transition={{ duration: 0.8 }}
-            className="grid grid-cols-2 gap-6"
+            className="grid grid-cols-1 sm:grid-cols-2 gap-6"
           >
-            {[
-              { icon: Target, label: 'Mission-Driven', value: '100%' },
-              { icon: Users, label: 'Active Users', value: '75K' },
-              { icon: Briefcase, label: 'Countries', value: '50+' },
-              { icon: Newspaper, label: 'Daily Transactions', value: '50K+' },
-            ].map((stat, i) => {
-              const Icon = stat.icon;
+            {principles.map((principle) => {
+              const Icon = principle.icon;
               return (
-                <div key={i} className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 text-center">
+                <div
+                  key={principle.title}
+                  className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 text-center"
+                >
                   <div className="w-12 h-12 bg-gradient-to-br from-[#1E63C6] to-[#0F8A8C] rounded-xl flex items-center justify-center mx-auto mb-4">
-                    <Icon className="w-6 h-6 text-white" />
+                    <Icon className="w-6 h-6 text-white" aria-hidden="true" />
                   </div>
-                  <div className="text-2xl font-bold text-white mb-2">{stat.value}</div>
-                  <div className="text-sm text-white/60">{stat.label}</div>
+                  <div className="text-lg font-bold text-white mb-2">{principle.title}</div>
+                  <div className="text-sm text-white/60 leading-relaxed">{principle.detail}</div>
                 </div>
               );
             })}
@@ -80,6 +108,7 @@ function AboutSection() {
 function PressSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
+  const { openComingSoon } = useComingSoon();
 
   return (
     <section id="press" className="py-24 bg-gradient-to-b from-black via-[#1E63C6]/5 to-black">
@@ -107,11 +136,26 @@ function PressSection() {
             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 }}
             transition={{ duration: 0.8 }}
           >
-            <h3 className="text-2xl font-bold text-white mb-6">Press Kit</h3>
+            <div className="flex flex-wrap items-center gap-3 mb-6">
+              <h3 className="text-2xl font-bold text-white">Press Kit</h3>
+              <ComingSoonBadge size="sm" />
+            </div>
             <p className="text-white/60 mb-6">
-              Download our brand assets, logos, and company information for press and media purposes.
+              We're putting together a downloadable kit of brand assets, logos, and
+              company information for press and media. In the meantime, reach our team
+              directly using the contact details opposite.
             </p>
-            <button className="px-6 py-3 bg-gradient-to-r from-[#1E63C6] to-[#0F8A8C] text-white rounded-xl font-semibold hover:opacity-90 transition-opacity">
+            <button
+              type="button"
+              onClick={() =>
+                openComingSoon({
+                  feature: 'Press Kit',
+                  message:
+                    'Our downloadable press kit is still being prepared. For urgent media requests, email support@kavipay.io and our team will send assets directly.',
+                })
+              }
+              className="px-6 py-3 bg-white/10 border border-white/20 text-white rounded-xl font-semibold hover:bg-white/20 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1476B8]"
+            >
               Download Press Kit
             </button>
           </motion.div>

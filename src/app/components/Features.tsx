@@ -1,67 +1,89 @@
-import { motion, useInView } from 'motion/react';
+import { motion, useInView, useReducedMotion } from 'motion/react';
 import { useRef, useState } from 'react';
 import { CreditCard, Shield, Zap, Globe, Wallet, TrendingUp } from 'lucide-react';
+import type { LucideIcon } from 'lucide-react';
 import SparkleOverlay from './SparkleOverlay';
+import { ComingSoonBadge } from './ComingSoonBadge';
+import { useComingSoon } from './ComingSoonProvider';
+import { FEATURES } from '../config/features';
+import type { FeatureKey } from '../config/features';
 
-const features = [
+interface FeatureCardData {
+  /** Links the card to `config/features.ts`, which decides availability. */
+  key: FeatureKey;
+  icon: LucideIcon;
+  title: string;
+  description: string;
+  gradient: string;
+}
+
+const features: FeatureCardData[] = [
   {
+    key: 'virtualCards',
     icon: CreditCard,
     title: 'Virtual & Physical Cards',
-    description: 'Get instant virtual cards and order physical cards delivered worldwide',
+    description:
+      'Issue a virtual card instantly, or order a physical card delivered to your door',
     gradient: 'from-[#1E63C6] to-[#1476B8]',
   },
   {
+    key: 'withdrawals',
     icon: Zap,
-    title: 'Instant Withdrawals',
-    description: 'Convert crypto to fiat instantly and spend anywhere cards are accepted',
+    title: 'Fast Withdrawals',
+    description:
+      'Withdraw your balance straight to your linked Nigerian bank account',
     gradient: 'from-[#1476B8] to-[#0F8A8C]',
   },
   {
+    key: 'login',
     icon: Shield,
     title: 'Bank-Grade Security',
     description: 'Multi-layer security with biometric authentication and encryption',
     gradient: 'from-[#0F8A8C] to-[#1E63C6]',
   },
   {
+    key: 'globalAcceptance',
     icon: Globe,
     title: 'Global Acceptance',
-    description: 'Use your card at millions of merchants worldwide',
+    description:
+      'Worldwide merchant acceptance on every Kavipay card, wherever you are',
     gradient: 'from-[#1E63C6] to-[#0F8A8C]',
   },
   {
+    key: 'multiCurrencyWallet',
     icon: Wallet,
     title: 'Multi-Currency Wallet',
-    description: 'Store and manage multiple cryptocurrencies in one secure wallet',
+    description: 'Hold and manage multiple currencies side by side in one wallet',
     gradient: 'from-[#1476B8] to-[#1E63C6]',
   },
   {
+    key: 'realTimeRates',
     icon: TrendingUp,
     title: 'Real-Time Rates',
-    description: 'Get the best conversion rates with real-time market prices',
+    description: 'Live market pricing applied to every conversion as it happens',
     gradient: 'from-[#0F8A8C] to-[#1476B8]',
   },
 ];
 
-function FeatureCard({ feature, index }: { feature: typeof features[0]; index: number }) {
+function FeatureCard({ feature, index }: { feature: FeatureCardData; index: number }) {
   const [rotateX, setRotateX] = useState(0);
   const [rotateY, setRotateY] = useState(0);
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
+  const reduceMotion = useReducedMotion();
+  const { openComingSoon } = useComingSoon();
+
+  const isAvailable = FEATURES[feature.key].status === 'live';
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const card = e.currentTarget;
-    const rect = card.getBoundingClientRect();
+    if (reduceMotion) return;
+
+    const rect = e.currentTarget.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
-    
-    const centerX = rect.width / 2;
-    const centerY = rect.height / 2;
-    
-    const rotateXValue = (y - centerY) / 10;
-    const rotateYValue = (centerX - x) / 10;
-    
-    setRotateX(rotateXValue);
-    setRotateY(rotateYValue);
+
+    setRotateX((y - rect.height / 2) / 10);
+    setRotateY((rect.width / 2 - x) / 10);
   };
 
   const handleMouseLeave = () => {
@@ -83,23 +105,63 @@ function FeatureCard({ feature, index }: { feature: typeof features[0]; index: n
         transform: `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`,
         transition: 'transform 0.1s ease-out',
       }}
-      className="relative group"
+      className="group relative"
     >
-      <div className="relative bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 h-full hover:bg-white/10 transition-colors">
+      <div
+        className={`relative h-full rounded-2xl border p-8 backdrop-blur-sm transition-colors ${
+          isAvailable
+            ? 'border-white/10 bg-white/5 hover:bg-white/10'
+            : 'border-white/[0.07] bg-white/[0.02] hover:bg-white/[0.05]'
+        }`}
+      >
         {/* Gradient overlay on hover */}
-        <div className={`absolute inset-0 bg-gradient-to-br ${feature.gradient} opacity-0 group-hover:opacity-10 rounded-2xl transition-opacity duration-300`} />
-        
-        {/* Icon */}
-        <div className={`w-14 h-14 bg-gradient-to-br ${feature.gradient} rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
-          <Icon className="w-7 h-7 text-white" />
+        <div
+          className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${feature.gradient} opacity-0 transition-opacity duration-300 group-hover:opacity-10`}
+          aria-hidden="true"
+        />
+
+        {/* Icon — dimmed for capabilities that aren't usable yet */}
+        <div
+          className={`mb-6 flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br ${
+            feature.gradient
+          } transition-transform duration-300 group-hover:scale-110 ${
+            isAvailable ? '' : 'opacity-50'
+          }`}
+        >
+          <Icon className="h-7 w-7 text-white" aria-hidden="true" />
         </div>
 
         {/* Content */}
-        <h3 className="text-xl font-semibold text-white mb-3">{feature.title}</h3>
-        <p className="text-white/60">{feature.description}</p>
+        <div className="mb-3 flex flex-wrap items-center gap-x-3 gap-y-2">
+          <h3
+            className={`text-xl font-semibold ${
+              isAvailable ? 'text-white' : 'text-white/75'
+            }`}
+          >
+            {feature.title}
+          </h3>
+          {!isAvailable && <ComingSoonBadge size="sm" />}
+        </div>
+
+        <p className={isAvailable ? 'text-white/60' : 'text-white/45'}>
+          {feature.description}
+        </p>
+
+        {!isAvailable && (
+          <button
+            type="button"
+            onClick={() => openComingSoon({ feature: feature.title })}
+            className="mt-5 rounded-full px-1 text-sm font-medium text-[#7BB8E8] underline-offset-4 transition-colors hover:text-white hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1476B8]"
+          >
+            Learn what's coming
+          </button>
+        )}
 
         {/* Hover glow effect */}
-        <div className={`absolute -inset-0.5 bg-gradient-to-br ${feature.gradient} rounded-2xl opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-300 -z-10`} />
+        <div
+          className={`absolute -inset-0.5 -z-10 rounded-2xl bg-gradient-to-br ${feature.gradient} opacity-0 blur-xl transition-opacity duration-300 group-hover:opacity-20`}
+          aria-hidden="true"
+        />
       </div>
     </motion.div>
   );
@@ -110,20 +172,31 @@ export function Features() {
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
-    <section id="features" className="relative py-24 bg-black">
+    <section
+      id="features"
+      aria-labelledby="features-heading"
+      className="relative bg-black py-24"
+    >
       <SparkleOverlay count={6} color="#0ea5e9" style="subtle" />
+
       {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[#1E63C6]/20 to-transparent" />
-      
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div
+        className="absolute inset-0 bg-gradient-to-b from-[#1E63C6]/20 to-transparent"
+        aria-hidden="true"
+      />
+
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <motion.div
           ref={ref}
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          className="mb-16 text-center"
         >
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+          <h2
+            id="features-heading"
+            className="mb-6 text-4xl font-bold md:text-5xl lg:text-6xl"
+          >
             <span className="bg-gradient-to-r from-white to-white/60 bg-clip-text text-transparent">
               Powerful Features for
             </span>
@@ -132,14 +205,15 @@ export function Features() {
               Modern Finance
             </span>
           </h2>
-          <p className="text-xl text-white/60 max-w-2xl mx-auto">
-            Everything you need to seamlessly bridge the gap between crypto and traditional finance
+          <p className="mx-auto max-w-2xl text-xl text-white/60">
+            Everything you need to manage your money day to day — with more on the
+            way. Features marked Coming Soon are still in development.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
           {features.map((feature, index) => (
-            <FeatureCard key={index} feature={feature} index={index} />
+            <FeatureCard key={feature.key} feature={feature} index={index} />
           ))}
         </div>
       </div>

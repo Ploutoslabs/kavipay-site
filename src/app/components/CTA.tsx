@@ -1,7 +1,22 @@
 import { motion, useInView } from "motion/react";
 import { useRef, useState } from "react";
-import { ArrowRight, Apple, Smartphone, Download } from "lucide-react";
+import { ArrowRight, Apple, Play, ShieldCheck, BadgeCheck, Wallet } from "lucide-react";
 import SparkleOverlay from "./SparkleOverlay";
+import { APP_STORE_URL, GOOGLE_PLAY_URL } from "../config/links";
+
+/**
+ * Trust signals shown under the download buttons.
+ *
+ * These replaced an invented "75K users" avatar cluster and a "4.9 rating"
+ * star row. Everything here is verifiable: the app is a free download, KYC is
+ * required to transact, and card processing runs through PCI DSS compliant
+ * partners.
+ */
+const TRUST_SIGNALS = [
+  { icon: Wallet, label: "Free to download" },
+  { icon: BadgeCheck, label: "KYC-verified accounts" },
+  { icon: ShieldCheck, label: "PCI DSS compliant partners" },
+];
 
 export function CTA() {
   const ref = useRef(null);
@@ -69,9 +84,9 @@ export function CTA() {
                 }
                 transition={{ duration: 0.6, delay: 0.2 }}
                 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
-                Ready to Start Your
+                Ready to Get Your
                 <br />
-                Crypto Journey?
+                Kavipay Card?
               </motion.h2>
 
               <motion.p
@@ -81,8 +96,8 @@ export function CTA() {
                 }
                 transition={{ duration: 0.6, delay: 0.3 }}
                 className="text-xl text-white/90 mb-12 max-w-2xl mx-auto">
-                Join thousands of users who are already spending their crypto in
-                the real world
+                Create your account, complete verification, and start spending in
+                minutes
               </motion.p>
 
               <motion.div
@@ -92,49 +107,43 @@ export function CTA() {
                 }
                 transition={{ duration: 0.6, delay: 0.4 }}
                 className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                {/* App Store Button */}
-                <a
-                  href="https://apps.apple.com/ng/app/kavipay/id6759305057"
-                  target="_blank"
-                  rel="noopener noreferrer">
-                  <motion.button
+                {/* App Store */}
+                <a href={APP_STORE_URL} target="_blank" rel="noopener noreferrer">
+                  <motion.span
                     className="group flex items-center space-x-3 px-8 py-4 bg-white text-[#1E63C6] rounded-full font-semibold text-lg hover:bg-white/90 transition-colors"
                     whileHover={{ scale: 1.05, y: -2 }}
                     whileTap={{ scale: 0.95 }}>
-                    <Apple className="w-6 h-6" />
+                    <Apple className="w-6 h-6" aria-hidden="true" />
                     <div className="text-left">
                       <div className="text-xs text-[#1E63C6]/80">
                         Download on the
                       </div>
                       <div className="font-bold">App Store</div>
                     </div>
-                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                  </motion.button>
+                    <ArrowRight
+                      className="w-5 h-5 group-hover:translate-x-1 transition-transform"
+                      aria-hidden="true"
+                    />
+                  </motion.span>
                 </a>
 
-                {/* APK Download Button */}
-                <a href="https://github.com/Ploutoslabs/kavipay-site/releases/download/v1.1.1/kavipay.apk">
-                  <motion.button
-                    className="group flex items-center space-x-3 px-8 py-4 bg-black text-white rounded-full font-semibold text-lg hover:bg-black/80 transition-colors"
+                {/* Google Play */}
+                <a href={GOOGLE_PLAY_URL} target="_blank" rel="noopener noreferrer">
+                  <motion.span
+                    className="group flex items-center space-x-3 px-8 py-4 bg-white text-[#1E63C6] rounded-full font-semibold text-lg hover:bg-white/90 transition-colors"
                     whileHover={{ scale: 1.05, y: -2 }}
                     whileTap={{ scale: 0.95 }}>
-                    <Download className="w-6 h-6" />
+                    <Play className="w-6 h-6 fill-current" aria-hidden="true" />
                     <div className="text-left">
-                      <div className="text-xs text-white/80">Download</div>
-                      <div className="font-bold">Android APK</div>
+                      <div className="text-xs text-[#1E63C6]/80">Get it on</div>
+                      <div className="font-bold">Google Play</div>
                     </div>
-                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                  </motion.button>
+                    <ArrowRight
+                      className="w-5 h-5 group-hover:translate-x-1 transition-transform"
+                      aria-hidden="true"
+                    />
+                  </motion.span>
                 </a>
-
-                {/* Google Play Button - Coming Soon */}
-                <motion.button className="flex items-center space-x-3 px-8 py-4 bg-white/10 text-white/50 rounded-full font-semibold text-lg cursor-not-allowed">
-                  <Smartphone className="w-6 h-6" />
-                  <div className="text-left">
-                    <div className="text-xs text-white/40">Coming Soon</div>
-                    <div className="font-bold">Google Play</div>
-                  </div>
-                </motion.button>
               </motion.div>
 
               {/* Trust indicators */}
@@ -142,29 +151,13 @@ export function CTA() {
                 initial={{ opacity: 0 }}
                 animate={isInView ? { opacity: 1 } : { opacity: 0 }}
                 transition={{ duration: 0.6, delay: 0.5 }}
-                className="mt-12 flex flex-wrap items-center justify-center gap-8 text-white/80">
-                <div className="flex items-center space-x-2">
-                  <div className="flex -space-x-2">
-                    {[...Array(4)].map((_, i) => (
-                      <div
-                        key={i}
-                        className="w-8 h-8 rounded-full bg-white/20 border-2 border-white/40"
-                      />
-                    ))}
+                className="mt-12 flex flex-wrap items-center justify-center gap-x-8 gap-y-4 text-white/80">
+                {TRUST_SIGNALS.map(({ icon: Icon, label }) => (
+                  <div key={label} className="flex items-center space-x-2">
+                    <Icon className="h-5 w-5 text-white/70" aria-hidden="true" />
+                    <span className="text-sm">{label}</span>
                   </div>
-                  <span className="text-sm">75K users</span>
-                </div>
-                <div className="flex items-center space-x-1">
-                  {[...Array(5)].map((_, i) => (
-                    <svg
-                      key={i}
-                      className="w-5 h-5 fill-yellow-400"
-                      viewBox="0 0 20 20">
-                      <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-                    </svg>
-                  ))}
-                  <span className="ml-2 text-sm">4.9 rating</span>
-                </div>
+                ))}
               </motion.div>
             </div>
           </div>
