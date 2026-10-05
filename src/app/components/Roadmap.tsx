@@ -32,6 +32,10 @@ const IN_DEVELOPMENT_KEYS: FeatureKey[] = [
   'realTimeRates',
 ];
 
+// The "In Development" card is hidden for now. Flip this back to true to show
+// it again; the "Live Now" card returns to the two-column layout with it.
+const SHOW_IN_DEVELOPMENT = false;
+
 function FeatureRow({
   featureKey,
   index,
@@ -81,6 +85,8 @@ function FeatureRow({
 export function Roadmap() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
+  // Slides in from the left beside its sibling card, or rises in when centred alone.
+  const liveOffset = SHOW_IN_DEVELOPMENT ? { x: -30, y: 0 } : { x: 0, y: 30 };
 
   return (
     <section
@@ -131,11 +137,17 @@ export function Roadmap() {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-16">
+        <div
+          className={
+            SHOW_IN_DEVELOPMENT
+              ? 'grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-16'
+              : 'mx-auto max-w-2xl'
+          }
+        >
           {/* Live now */}
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 }}
+            initial={{ opacity: 0, ...liveOffset }}
+            animate={isInView ? { opacity: 1, x: 0, y: 0 } : { opacity: 0, ...liveOffset }}
             transition={{ duration: 0.8, delay: 0.1 }}
             className="relative rounded-2xl border border-white/10 bg-white/5 p-8"
           >
@@ -163,38 +175,40 @@ export function Roadmap() {
           </motion.div>
 
           {/* In development */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 30 }}
-            transition={{ duration: 0.8, delay: 0.1 }}
-            className="relative rounded-2xl border border-white/10 bg-white/[0.02] p-8"
-          >
-            <div className="mb-8 flex flex-wrap items-center gap-3">
-              <h3 className="text-sm font-semibold uppercase tracking-wider text-white/70">
-                In Development
-              </h3>
-              <ComingSoonBadge size="sm" />
-            </div>
+          {SHOW_IN_DEVELOPMENT && (
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 30 }}
+              transition={{ duration: 0.8, delay: 0.1 }}
+              className="relative rounded-2xl border border-white/10 bg-white/[0.02] p-8"
+            >
+              <div className="mb-8 flex flex-wrap items-center gap-3">
+                <h3 className="text-sm font-semibold uppercase tracking-wider text-white/70">
+                  In Development
+                </h3>
+                <ComingSoonBadge size="sm" />
+              </div>
 
-            <ul className="space-y-5">
-              {IN_DEVELOPMENT_KEYS.map((key, index) => (
-                <FeatureRow
-                  key={key}
-                  featureKey={key}
-                  index={index}
-                  isInView={isInView}
-                  live={false}
-                />
-              ))}
-            </ul>
+              <ul className="space-y-5">
+                {IN_DEVELOPMENT_KEYS.map((key, index) => (
+                  <FeatureRow
+                    key={key}
+                    featureKey={key}
+                    index={index}
+                    isInView={isInView}
+                    live={false}
+                  />
+                ))}
+              </ul>
 
-            {/* Deliberately does not claim "none of these work yet" —
-                crypto funding is de-promoted, not missing. See features.ts. */}
-            <p className="mt-8 border-t border-white/10 pt-6 text-sm leading-relaxed text-white/40">
-              These are in active development. We'll announce each one as it
-              becomes generally available.
-            </p>
-          </motion.div>
+              {/* Deliberately does not claim "none of these work yet" —
+                  crypto funding is de-promoted, not missing. See features.ts. */}
+              <p className="mt-8 border-t border-white/10 pt-6 text-sm leading-relaxed text-white/40">
+                These are in active development. We'll announce each one as it
+                becomes generally available.
+              </p>
+            </motion.div>
+          )}
         </div>
       </div>
     </section>
