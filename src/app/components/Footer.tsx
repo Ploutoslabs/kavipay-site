@@ -54,7 +54,7 @@ export function Footer() {
               />
             </Link>
             <p className="text-white/60 mb-6 max-w-xs">
-              Bridge the gap between crypto and traditional finance with KaviPay.
+              Bridging Digital Payments
             </p>
             <div className="flex space-x-4">
               {socialLinks.map((social) => {
