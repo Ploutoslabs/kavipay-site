@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router";
+import { createBrowserRouter, redirect } from "react-router";
 import RootLayout from "./RootLayout";
 import Home from "./pages/Home";
 import Waitlist from "./pages/Waitlist";
@@ -16,9 +16,14 @@ import KnowledgeBase from "./pages/KnowledgeBase";
 import Contact from "./pages/Contact";
 import Status from "./pages/Status";
 import DeleteAccount from "./pages/DeleteAccount";
-import Referral from "./pages/Referral";
 import KavipayKYCPolicyPage from "./pages/KavipayKYCPolicyPage";
 import SupportChat from "./pages/SupportChat";
+import { appReferralUrl } from "./config/links";
+
+// Referral links live on the web app. vercel.json redirects well-formed ones
+// before the page loads; this covers client-side navigation, local dev and
+// malformed codes, which go home.
+const toAppReferral = (code: string | undefined) => redirect(appReferralUrl(code) ?? "/");
 
 export const router = createBrowserRouter([
   // Outside RootLayout: that layout mounts the widget with its own bubble,
@@ -44,8 +49,9 @@ export const router = createBrowserRouter([
       { path: "privacy-policy", Component: Privacy },
       { path: "cookies", Component: Cookies },
       { path: "eula", Component: EULA },
-      { path: "referral/:code", Component: Referral },
-      { path: "referral", Component: Referral },
+      { path: "referral/:code", loader: ({ params }) => toAppReferral(params.code) },
+      { path: "referral", loader: () => redirect("/") },
+      { path: "r/:slug", loader: ({ params }) => toAppReferral(params.slug) },
       { path: "kavipay-kyc-policy", Component: KavipayKYCPolicyPage },
     ],
   },
