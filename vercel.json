@@ -2,6 +2,23 @@
   "framework": "vite",
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
+  "redirects": [
+    {
+      "source": "/referral/:code([A-Za-z0-9_-]{1,64})",
+      "destination": "https://app.kavipay.io/r/:code",
+      "permanent": false
+    },
+    {
+      "source": "/r/:slug([A-Za-z0-9_-]{1,64})",
+      "destination": "https://app.kavipay.io/r/:slug",
+      "permanent": false
+    },
+    {
+      "source": "/referral",
+      "destination": "/",
+      "permanent": false
+    }
+  ],
   "rewrites": [
     {
       "source": "/(.*)",
